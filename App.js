@@ -17,6 +17,7 @@ const App = ()=> {
     <View style={styles.container}>
       {newBirds}
       <Text>Hello world</Text>
+      <Text>New world</Text>
       <StatusBar style="auto" />
       <Button title="Click me"/>
     </View>
