@@ -18,6 +18,7 @@ const App = ()=> {
       {newBirds}
       <Text>Hello world</Text>
       <Text>New world</Text>
+      <Text>I am new on react native</Text>
       <StatusBar style="auto" />
       <Button title="Click me"/>
     </View>
