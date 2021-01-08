@@ -11,6 +11,7 @@ import * as Linking from "expo-linking";
 import { Button, IconButton, Typography } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import Header from "../components/header";
+import Drawercontent from "../components/drawercontent";
 
 const config = {
   screens: {
@@ -137,11 +138,7 @@ function RootNavigation() {
     <NavigationContainer linking={linking}>
       <Drawer.Navigator
         initialRouteName="/"
-        drawerContent={() => (
-          <View>
-            <Text>Hello</Text>
-          </View>
-        )}
+        drawerContent={(props) => <Drawercontent {...props} />}
       >
         <Drawer.Screen name="/" component={HomeNavigation} />
       </Drawer.Navigator>
