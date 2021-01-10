@@ -39,28 +39,28 @@ const Drawercontent = ({ navigation }) => {
         />
       </View>
       <List component="nav" aria-label="main mailbox folders">
-        <ListItem button>
+        <ListItem button onClick={() => navigation.navigate("AllCategory")}>
           <ListItemIcon>
             <CategoryIcon fontSize="small" style={{ marginLeft: 4 }} />
           </ListItemIcon>
           <Typography variant="subtitle2">All Category</Typography>
         </ListItem>
         <Divider />
-        <ListItem button>
+        <ListItem button onClick={() => navigation.navigate("Order")}>
           <ListItemIcon>
             <StoreIcon fontSize="small" style={{ marginLeft: 4 }} />
           </ListItemIcon>
           <Typography variant="subtitle2">My Order</Typography>
         </ListItem>
         <Divider />
-        <ListItem button>
+        <ListItem button onClick={() => navigation.navigate("Cart")}>
           <ListItemIcon>
             <ShoppingCartIcon fontSize="small" style={{ marginLeft: 4 }} />
           </ListItemIcon>
           <Typography variant="subtitle2">My Cart</Typography>
         </ListItem>
         <Divider />
-        <ListItem button>
+        <ListItem button onClick={() => navigation.navigate("MyAccount")}>
           <ListItemIcon>
             <PersonIcon fontSize="small" style={{ marginLeft: 4 }} />
           </ListItemIcon>

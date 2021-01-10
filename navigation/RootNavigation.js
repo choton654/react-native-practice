@@ -10,15 +10,37 @@ import { StyleSheet, Text, View } from "react-native";
 import * as Linking from "expo-linking";
 import { Button, IconButton, Typography } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import ClearIcon from "@material-ui/icons/Clear";
 import Header from "../components/header";
 import Drawercontent from "../components/drawercontent";
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Category from "../screans/category";
+import Account from "../screans/account";
+import Cart from "../screans/cart";
+import Order from "../screans/order";
+import Login from "../screans/login";
+
+const Tab = createMaterialTopTabNavigator();
+// const Tab = createBottomTabNavigator();
 
 const config = {
   screens: {
     "/": {
       screens: {
         Home: "home",
-        Details: "details",
+        Details: {
+          path: "details",
+          screens: {
+            Tab1: "tab1",
+            Tab2: "tab2",
+          },
+        },
+        AllCategory: "category",
+        Cart: "cart",
+        Order: "order",
+        MyAccount: "account",
+        Login: "login",
       },
     },
   },
@@ -30,10 +52,33 @@ const linking = {
   config,
 };
 
+function MyTabs() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen
+        name="Tab1"
+        component={() => (
+          <View>
+            <Text>From tab1</Text>
+          </View>
+        )}
+      />
+      <Tab.Screen
+        name="Tab2"
+        component={() => (
+          <View>
+            <Text>From tab2</Text>
+          </View>
+        )}
+      />
+    </Tab.Navigator>
+  );
+}
+
 export function DetailsScreen() {
   return (
     <View>
-      <Text>Details Screen</Text>
+      <MyTabs />
     </View>
   );
 }
@@ -59,6 +104,8 @@ const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const HomeNavigation = () => {
+  const navigation = useNavigation();
+
   return (
     <Stack.Navigator
       screenOptions={{
@@ -74,22 +121,27 @@ const HomeNavigation = () => {
         options={{
           headerLeft: () => <Header />,
           headerRight: () => (
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              // onClick={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-            >
-              <ShoppingCartIcon style={{ color: "#fce4ec" }} />
-            </IconButton>
+            <View style={{ flexDirection: "row" }}>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                onClick={() => navigation.navigate("Cart")}
+              >
+                <ShoppingCartIcon style={{ color: "#fce4ec" }} />
+              </IconButton>
+              <Typography
+                variant="subtitle1"
+                style={{ color: "#fce4ec", marginTop: 10, marginRight: 10 }}
+                onClick={() => navigation.navigate("Login")}
+              >
+                <strong>Login</strong>
+              </Typography>
+            </View>
           ),
           headerTitle: () => (
             <View>
-              <Typography
-                variant="h6"
-                //   style={{ marginRight: "50px" }}
-                color="inherit"
-              >
+              <Typography variant="h6" color="inherit">
                 <Link
                   to="/home"
                   style={{ textDecoration: "none", color: "white" }}
@@ -129,6 +181,37 @@ const HomeNavigation = () => {
         }}
       />
       <Stack.Screen name="Details" component={DetailsScreen} />
+      <Stack.Screen name="AllCategory" component={Category} />
+      <Stack.Screen name="MyAccount" component={Account} />
+      <Stack.Screen name="Cart" component={Cart} />
+      <Stack.Screen name="Order" component={Order} />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{
+          headerTitle: () => (
+            <Link
+              to="/home"
+              style={{ textDecoration: "none", color: "white", marginTop: 5 }}
+            >
+              <img
+                src="https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_4ee2f9.png"
+                style={{ width: 60 }}
+              />
+            </Link>
+          ),
+          headerRight: () => (
+            <IconButton
+              edge="start"
+              color="inherit"
+              aria-label="menu"
+              // onClick={() => navigation.navigate("Cart")}
+            >
+              <ClearIcon style={{ color: "#fce4ec" }} fontSize="medium" />
+            </IconButton>
+          ),
+        }}
+      />
     </Stack.Navigator>
   );
 };
