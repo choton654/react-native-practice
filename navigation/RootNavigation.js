@@ -6,11 +6,12 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import * as React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import * as Linking from "expo-linking";
 import { Button, IconButton, Typography } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import ClearIcon from "@material-ui/icons/Clear";
+import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import Header from "../components/header";
 import Drawercontent from "../components/drawercontent";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
@@ -105,12 +106,15 @@ const Drawer = createDrawerNavigator();
 
 const HomeNavigation = () => {
   const navigation = useNavigation();
+  const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
           backgroundColor: "#1e88e5",
+          borderBottomWidth: 2,
+          borderBottomColor: "#1e88e5",
         },
         headerTintColor: "#eceff1",
       }}
@@ -133,9 +137,16 @@ const HomeNavigation = () => {
               <Typography
                 variant="subtitle1"
                 style={{ color: "#fce4ec", marginTop: 10, marginRight: 10 }}
-                onClick={() => navigation.navigate("Login")}
               >
-                <strong>Login</strong>
+                {user ? (
+                  <PermIdentityIcon
+                    onClick={() => navigation.navigate("MyAccount")}
+                  />
+                ) : (
+                  <strong onClick={() => navigation.navigate("Login")}>
+                    Login
+                  </strong>
+                )}
               </Typography>
             </View>
           ),
@@ -182,7 +193,32 @@ const HomeNavigation = () => {
       />
       <Stack.Screen name="Details" component={DetailsScreen} />
       <Stack.Screen name="AllCategory" component={Category} />
-      <Stack.Screen name="MyAccount" component={Account} />
+      <Stack.Screen
+        name="MyAccount"
+        component={Account}
+        options={{
+          headerTitle: () => (
+            <View style={{ flexDirection: "row" }}>
+              <Image
+                source={{
+                  uri:
+                    "https://static-assets-web.flixcart.com/batman-returns/batman-returns/p/images/logo_lite-cbb357.png",
+                }}
+                style={{
+                  width: 25,
+                  height: 25,
+                }}
+              />
+              <Typography
+                variant="subtitle1"
+                style={{ marginLeft: 20, color: "white" }}
+              >
+                My Account
+              </Typography>
+            </View>
+          ),
+        }}
+      />
       <Stack.Screen name="Cart" component={Cart} />
       <Stack.Screen name="Order" component={Order} />
       <Stack.Screen
@@ -205,9 +241,9 @@ const HomeNavigation = () => {
               edge="start"
               color="inherit"
               aria-label="menu"
-              // onClick={() => navigation.navigate("Cart")}
+              onClick={() => navigation.navigate("Home")}
             >
-              <ClearIcon style={{ color: "#fce4ec" }} fontSize="medium" />
+              <ClearIcon style={{ color: "#fce4ec" }} fontSize="default" />
             </IconButton>
           ),
         }}

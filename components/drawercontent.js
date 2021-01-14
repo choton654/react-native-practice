@@ -17,7 +17,7 @@ const Drawercontent = ({ navigation }) => {
     <View>
       <View style={styles.heading}>
         <PersonIcon
-          fontSize="medium"
+          fontSize="default"
           style={{ color: "white", marginTop: 20 }}
         />
         <Typography
