@@ -6,7 +6,9 @@ import {
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import * as React from "react";
+import { useEffect, useState, useContext } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Linking from "expo-linking";
 import { Button, IconButton, Typography } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
@@ -16,12 +18,13 @@ import Header from "../components/header";
 import Drawercontent from "../components/drawercontent";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Category from "../screans/category";
-import Account from "../screans/account";
-import Cart from "../screans/cart";
+import Category from "../screans/category/category";
+import Account from "../screans/user/account";
+import Cart from "../screans/cart/cart";
 import Order from "../screans/order";
-import Login from "../screans/login";
-
+import Login from "../screans/user/login";
+import HomeScreen from "../screans/home";
+import { AuthContext } from "../screans/user/authcontext";
 const Tab = createMaterialTopTabNavigator();
 // const Tab = createBottomTabNavigator();
 
@@ -84,37 +87,20 @@ export function DetailsScreen() {
   );
 }
 
-function HomeScreen() {
-  const navigation = useNavigation();
-
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>Home Screen</Text>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={() => navigation.navigate("Details")}
-      >
-        <Text style={{ color: "#ffc107" }}>Click me</Text>
-      </Button>
-    </View>
-  );
-}
-
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
 
 const HomeNavigation = () => {
   const navigation = useNavigation();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const { state, dispatch } = useContext(AuthContext);
 
   return (
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          backgroundColor: "#1e88e5",
+          backgroundColor: "#2874f0",
           borderBottomWidth: 2,
-          borderBottomColor: "#1e88e5",
+          borderBottomColor: "#2874f0",
         },
         headerTintColor: "#eceff1",
       }}
@@ -138,7 +124,7 @@ const HomeNavigation = () => {
                 variant="subtitle1"
                 style={{ color: "#fce4ec", marginTop: 10, marginRight: 10 }}
               >
-                {user ? (
+                {state.user ? (
                   <PermIdentityIcon
                     onClick={() => navigation.navigate("MyAccount")}
                   />

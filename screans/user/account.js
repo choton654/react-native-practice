@@ -1,18 +1,19 @@
 import { Typography } from "@material-ui/core";
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
-
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthContext } from "./authcontext";
 const Account = () => {
-  const user = JSON.parse(localStorage.getItem("user"));
+  const { state, dispatch } = useContext(AuthContext);
   return (
     <View style={{ flex: 1 }}>
       <View
         style={{
           height: "40%",
-          backgroundColor: "#1e88e5",
+          backgroundColor: "#2874f0",
         }}
       >
-        {user && (
+        {state.user && (
           <View style={{ alignItems: "center" }}>
             <View style={{ alignItems: "center", flexDirection: "row" }}>
               <Image
@@ -42,10 +43,10 @@ const Account = () => {
               />
             </View>
             <Typography variant="h6" style={{ color: "white", marginTop: 10 }}>
-              <strong>{user.username}</strong>
+              <strong>{state.user.username}</strong>
             </Typography>
             <Typography variant="subtitle1" style={{ color: "white" }}>
-              {user.email}
+              {state.user.email}
             </Typography>
           </View>
         )}
