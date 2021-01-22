@@ -3,6 +3,7 @@ import {
   useNavigation,
   Link,
 } from "@react-navigation/native";
+import { config } from "./config";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import * as React from "react";
@@ -25,30 +26,9 @@ import Order from "../screans/order";
 import Login from "../screans/user/login";
 import HomeScreen from "../screans/home";
 import { AuthContext } from "../screans/user/authcontext";
-const Tab = createMaterialTopTabNavigator();
-// const Tab = createBottomTabNavigator();
+import Editprofile from "../screans/user/editprofile";
 
-const config = {
-  screens: {
-    "/": {
-      screens: {
-        Home: "home",
-        Details: {
-          path: "details",
-          screens: {
-            Tab1: "tab1",
-            Tab2: "tab2",
-          },
-        },
-        AllCategory: "category",
-        Cart: "cart",
-        Order: "order",
-        MyAccount: "account",
-        Login: "login",
-      },
-    },
-  },
-};
+const Tab = createMaterialTopTabNavigator();
 
 const prefix = Linking.makeUrl("/");
 const linking = {
@@ -179,6 +159,7 @@ const HomeNavigation = () => {
       />
       <Stack.Screen name="Details" component={DetailsScreen} />
       <Stack.Screen name="AllCategory" component={Category} />
+      <Stack.Screen name="Editprofile" component={Editprofile} />
       <Stack.Screen
         name="MyAccount"
         component={Account}
@@ -242,7 +223,7 @@ function RootNavigation() {
   return (
     <NavigationContainer linking={linking}>
       <Drawer.Navigator
-        initialRouteName="/"
+        // initialRouteName="/"
         drawerContent={(props) => <Drawercontent {...props} />}
       >
         <Drawer.Screen name="/" component={HomeNavigation} />

@@ -5,11 +5,9 @@ import PersonIcon from "@material-ui/icons/Person";
 import StoreIcon from "@material-ui/icons/Store";
 import CategoryIcon from "@material-ui/icons/Category";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
+import DoubleArrowIcon from "@material-ui/icons/DoubleArrow";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { View, Text, StyleSheet, Image } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import ExpandLess from "@material-ui/icons/ExpandLess";
-import ExpandMore from "@material-ui/icons/ExpandMore";
 import { AuthContext } from "../screans/user/authcontext";
 import { CategoryContext } from "../screans/category/categorycontext";
 import {
@@ -41,7 +39,7 @@ const Drawercontent = ({ navigation }) => {
     dispatch({ type: "LOGOUT_USER" });
     navigation.navigate("Home");
   };
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const handleClick = () => {
     setOpen(!open);
   };
@@ -76,25 +74,36 @@ const Drawercontent = ({ navigation }) => {
             <CategoryIcon fontSize="small" style={{ marginLeft: 4 }} />
           </ListItemIcon>
           <Typography variant="subtitle2">All Category</Typography>
-          {open ? <ExpandLess /> : <ExpandMore />}
+          {/* {open ? <ExpandLess /> : <ExpandMore />} */}
         </ListItem>
         <Collapse in={open} timeout="auto" unmountOnExit>
-          <List component="div" disablePadding>
-            <ListItem button>
-              {catstate.categories.length !== 0 ? (
-                <View>
-                  {catstate.categories.map(
-                    (cat) =>
-                      cat.parentId === undefined && <Text>{cat.name}</Text>
-                  )}
-                </View>
-              ) : (
-                <View>
-                  <Text>Loading</Text>
-                </View>
+          {catstate.categories.length !== 0 ? (
+            <View>
+              {catstate.categories.map(
+                (cat) =>
+                  cat.parentId === undefined && (
+                    <ListItem
+                      key={cat._id}
+                      button
+                      style={{ backgroundColor: "#e0e0e0" }}
+                      onClick={() => navigation.navigate("AllCategory")}
+                    >
+                      <ListItemIcon>
+                        <DoubleArrowIcon
+                          fontSize="small"
+                          style={{ marginLeft: 4 }}
+                        />
+                      </ListItemIcon>
+                      <Typography variant="subtitle2">{cat.name}</Typography>
+                    </ListItem>
+                  )
               )}
-            </ListItem>
-          </List>
+            </View>
+          ) : (
+            <View>
+              <Text>Loading</Text>
+            </View>
+          )}
         </Collapse>
         <Divider />
         <ListItem button onClick={() => navigation.navigate("Order")}>

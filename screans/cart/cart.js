@@ -22,7 +22,7 @@ const Cart = () => {
           <View style={{ alignItems: "center" }}>
             <Typography variant="h6">Your cart is empty</Typography>
             <Typography variant="subtitle1" style={{ textAlign: "center" }}>
-              It's good day to buy the items tou saved for latter!
+              It's good day to buy the items to saved for latter!
             </Typography>
 
             <Typography

@@ -23,14 +23,7 @@ const Login = () => {
       .post(`${BASE_URL}/user/api/login`, { email, password })
       .then(async (res) => {
         const { token, user } = res.data;
-        // try {
-        //   const jsonValue = JSON.stringify(user);
-        //   await AsyncStorage.setItem("user", jsonValue);
-        //   await AsyncStorage.setItem("token", token);
-        // } catch (e) {
-        //   console.log(e);
-        // }
-        localStorage.setItem("user", user);
+        localStorage.setItem("user", JSON.stringify(user));
         localStorage.setItem("token", token);
         dispatch({ type: "ADD_USER", payload: user });
         setEmail("");
