@@ -15,5 +15,10 @@ export const reducer = (state, action) => {
         ...state,
         user: null,
       };
+    case "EDIT_USER":
+      return {
+        ...state,
+        user: action.payload,
+      };
   }
 };

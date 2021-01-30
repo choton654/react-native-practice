@@ -1,19 +1,43 @@
 import { Typography, Paper, Divider, TextField } from "@material-ui/core";
-import SettingsIcon from "@material-ui/icons/Settings";
-import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
+import { TextInput, Button, Modal, Portal } from "react-native-paper";
 import React, { useEffect, useState, useContext } from "react";
 import {
   NavigationContainer,
   useNavigation,
   Link,
 } from "@react-navigation/native";
+import axios from "axios";
 import { StyleSheet, Text, View, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "./authcontext";
+import BASE_URL from "../../api";
+
 const Editprofile = () => {
   const { state, dispatch } = useContext(AuthContext);
   const navigation = useNavigation();
+  const [username, setUsername] = useState(state.user.username);
+  const [email, setEmail] = useState(state.user.email);
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user._id;
+  const token = localStorage.getItem("token");
+  const handleSubmit = () => {
+    axios
+      .put(
+        `${BASE_URL}/user/api/${userId}/updateuser`,
+        { username, email },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        const { updatedUser } = res.data;
+        console.log(updatedUser);
+        dispatch({ type: "EDIT_USER", payload: updatedUser });
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <View style={{ flex: 1, backgroundColor: "#e0e0e0", width: "100%" }}>
       <View
@@ -55,7 +79,7 @@ const Editprofile = () => {
         )}
       </View>
       <View style={{ backgroundColor: "#f5f5f5", flex: 1 }}>
-        <TextField
+        {/* <TextField
           id="standard-basic"
           label="Username"
           value={state.user.username}
@@ -66,8 +90,31 @@ const Editprofile = () => {
           label="Email"
           value={state.user.email}
           style={{ width: "95%", marginLeft: 10, marginTop: 20 }}
+        /> */}
+        <TextInput
+          placeholder="Username"
+          value={username}
+          onChangeText={(text) => setUsername(text)}
+          style={{
+            height: 30,
+            width: "50%",
+            marginHorizontal: "auto",
+            marginTop: 20,
+          }}
+        />
+        <TextInput
+          placeholder="Email"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+          style={{
+            height: 30,
+            width: "50%",
+            marginTop: 10,
+            marginHorizontal: "auto",
+          }}
         />
         <Text
+          onPress={handleSubmit}
           style={{
             fontSize: 20,
             fontWeight: "bold",
