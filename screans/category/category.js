@@ -4,13 +4,13 @@ import { Menu, Divider, Button } from "react-native-paper";
 import axios from "axios";
 import BASE_URL from "../../api";
 import { CategoryContext } from "./categorycontext";
-const Category = ({route,navigation}) => {
-  const {catId} = route.params;
+const Category = ({ route, navigation }) => {
+  const { catId } = route.params;
   const { catstate, catdispatch } = useContext(CategoryContext);
   const [visible, setVisible] = React.useState(false);
-  
+
   const openMenu = () => setVisible(true);
-  
+
   const closeMenu = () => setVisible(false);
   useEffect(() => {
     getAllCategory();
@@ -25,25 +25,56 @@ const Category = ({route,navigation}) => {
       .catch((err) => console.log(err));
   };
   return (
-    <View style={{flex:1}}>
+    <View>
       {catstate.categories.length !== 0 ? (
-        <View style={{flex:1, flexDirection:"row"}}>
+        <View style={{ flexDirection: "column" }}>
           {catstate.categories.map(
-            (cat) => cat.parentId && cat.parentId._id.toString() === catId.toString() && 
-          <View style={{flex:1, flexDirection:"row"}}>
-           
-            <Menu
-              visible={visible}
-              onDismiss={closeMenu}
-              anchor={<Button onPress={openMenu}>{cat.name}</Button>}>
-              <Menu.Item onPress={() => {}} title="Item 1" />
-              <Menu.Item onPress={() => {}} title="Item 2" />
-              <Divider />
-              <Menu.Item onPress={() => {}} title="Item 3" />
-            </Menu>
-          </View>
-          ) 
-          }
+            (cat) =>
+              cat.parentId &&
+              cat.parentId._id.toString() === catId.toString() && (
+                <View
+                  key={cat._id}
+                  style={{
+                    flex: 1,
+                    flexDirection: "column",
+                    justifyContent: "space-evenly",
+                    alignItems: "center",
+                  }}
+                >
+                  <Menu
+                    visible={visible}
+                    onDismiss={closeMenu}
+                    anchor={
+                      <Button
+                        style={{
+                          color: "red",
+                          backgroundColor: "pink",
+                          marginHorizontal: 20,
+                          marginVertical: 20,
+                          height: "40px",
+                        }}
+                        onPress={openMenu}
+                      >
+                        {cat.name}
+                      </Button>
+                    }
+                  >
+                    {catstate.categories.map(
+                      (category) =>
+                        category.parentId &&
+                        category.parentId._id.toString() ===
+                          cat._id.toString() && (
+                          <Menu.Item
+                            key={category._id}
+                            onPress={() => navigation.navigate("AllProducts")}
+                            title={category.name}
+                          />
+                        )
+                    )}
+                  </Menu>
+                </View>
+              )
+          )}
         </View>
       ) : (
         <View>
