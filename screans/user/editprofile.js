@@ -20,6 +20,14 @@ const Editprofile = () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user._id;
   const token = localStorage.getItem("token");
+  const [oldPass, setOldpass] = useState("");
+  const [newPass, setNewpass] = useState("");
+  const [confirmPass, setConfirmpass] = useState("");
+  const [visible, setVisible] = useState(false);
+  const showModal = () => setVisible(true);
+  const hideModal = () => setVisible(false);
+  const containerStyle = { backgroundColor: "white", padding: 20 };
+
   const handleSubmit = () => {
     axios
       .put(
@@ -37,6 +45,25 @@ const Editprofile = () => {
         dispatch({ type: "EDIT_USER", payload: updatedUser });
       })
       .catch((err) => console.log(err));
+  };
+  const handlePassword = () => {
+    console.log(oldPass, newPass, confirmPass);
+    if (newPass === confirmPass) {
+      axios
+        .put(
+          `${BASE_URL}/user/api/${userId}/changepassword`,
+          { oldPass, newPass },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err));
+    } else {
+      console.log("password does not match");
+    }
   };
   return (
     <View style={{ flex: 1, backgroundColor: "#e0e0e0", width: "100%" }}>
@@ -126,6 +153,7 @@ const Editprofile = () => {
         </Text>
 
         <Text
+          onPress={showModal}
           style={{
             fontSize: 20,
             color: "#2874f0",
@@ -136,6 +164,69 @@ const Editprofile = () => {
         >
           Change Password
         </Text>
+        <Portal>
+          <Modal
+            style={{ width: "90%", marginHorizontal: "auto" }}
+            visible={visible}
+            onDismiss={hideModal}
+            contentContainerStyle={containerStyle}
+          >
+            <Text
+              style={{
+                marginHorizontal: "auto",
+                fontSize: "20",
+                fontWeight: "bold",
+              }}
+            >
+              Change Password
+            </Text>
+            <TextInput
+              placeholder="Old password"
+              value={oldPass}
+              onChangeText={(text) => setOldpass(text)}
+              style={{
+                height: 30,
+                width: "50%",
+                marginHorizontal: "auto",
+                marginTop: 20,
+              }}
+            />
+            <TextInput
+              placeholder="New password"
+              value={newPass}
+              onChangeText={(text) => setNewpass(text)}
+              style={{
+                height: 30,
+                width: "50%",
+                marginHorizontal: "auto",
+                marginTop: 10,
+              }}
+            />
+            <TextInput
+              placeholder="Confirm password"
+              value={confirmPass}
+              onChangeText={(text) => setConfirmpass(text)}
+              style={{
+                height: 30,
+                width: "50%",
+                marginHorizontal: "auto",
+                marginTop: 10,
+              }}
+            />
+            <Button
+              mode="contained"
+              color="#f44336"
+              onPress={handlePassword}
+              style={{
+                marginTop: 10,
+                width: "50%",
+                marginHorizontal: "auto",
+              }}
+            >
+              Done
+            </Button>
+          </Modal>
+        </Portal>
       </View>
     </View>
   );

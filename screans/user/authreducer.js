@@ -10,6 +10,11 @@ export const reducer = (state, action) => {
         ...state,
         user: action.payload,
       };
+    case "USER_PROFILE":
+      return {
+        ...state,
+        user: action.payload,
+      };
     case "LOGOUT_USER":
       return {
         ...state,

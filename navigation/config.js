@@ -10,7 +10,7 @@ export const config = {
             Tab2: "tab2",
           },
         },
-        AllCategory: "category",
+        SubCategory: "subcategory",
         Cart: "cart",
         Order: "order",
         MyAccount: "account",

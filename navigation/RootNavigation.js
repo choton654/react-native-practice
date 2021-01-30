@@ -158,7 +158,7 @@ const HomeNavigation = () => {
         }}
       />
       <Stack.Screen name="Details" component={DetailsScreen} />
-      <Stack.Screen name="AllCategory" component={Category} />
+      <Stack.Screen name="SubCategory" component={Category} />
       <Stack.Screen name="Editprofile" component={Editprofile} />
       <Stack.Screen
         name="MyAccount"

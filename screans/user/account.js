@@ -8,6 +8,8 @@ import {
   useNavigation,
   Link,
 } from "@react-navigation/native";
+import axios from "axios";
+import BASE_URL from "../../api";
 import { StyleSheet, Text, View, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "./authcontext";
@@ -18,6 +20,26 @@ const Account = () => {
     localStorage.clear();
     dispatch({ type: "LOGOUT_USER" });
     navigation.navigate("Home");
+  };
+  const user = JSON.parse(localStorage.getItem("user"));
+  const userId = user._id;
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    singleUser();
+  }, []);
+
+  const singleUser = () => {
+    axios
+      .get(`${BASE_URL}/user/api/${userId}/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        const { user } = res.data;
+        dispatch({ type: "USER_PROFILE", payload: user });
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <View style={{ flex: 1, backgroundColor: "#e0e0e0" }}>
