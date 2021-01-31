@@ -1,6 +1,6 @@
 import React, { useEffect, useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Menu, Divider, Button } from "react-native-paper";
+import { Menu, Divider, Button, Card, Title } from "react-native-paper";
 import axios from "axios";
 import BASE_URL from "../../api";
 import { CategoryContext } from "./categorycontext";
@@ -25,9 +25,9 @@ const Category = ({ route, navigation }) => {
       .catch((err) => console.log(err));
   };
   return (
-    <View>
+    <View style={{flex:1}}>
       {catstate.categories.length !== 0 ? (
-        <View style={{ flexDirection: "column" }}>
+        <View style={{ flexDirection: "cloumn", flex:1 }}>
           {catstate.categories.map(
             (cat) =>
               cat.parentId &&
@@ -41,37 +41,15 @@ const Category = ({ route, navigation }) => {
                     alignItems: "center",
                   }}
                 >
-                  <Menu
-                    visible={visible}
-                    onDismiss={closeMenu}
-                    anchor={
-                      <Button
-                        style={{
-                          color: "red",
-                          backgroundColor: "pink",
-                          marginHorizontal: 20,
-                          marginVertical: 20,
-                          height: "40px",
-                        }}
-                        onPress={openMenu}
-                      >
-                        {cat.name}
-                      </Button>
-                    }
-                  >
-                    {catstate.categories.map(
-                      (category) =>
-                        category.parentId &&
-                        category.parentId._id.toString() ===
-                          cat._id.toString() && (
-                          <Menu.Item
-                            key={category._id}
-                            onPress={() => navigation.navigate("AllProducts")}
-                            title={category.name}
-                          />
-                        )
-                    )}
-                  </Menu>
+                    <Card style={{marginVertical: 20}}
+                        onPress={() => navigation.navigate("AllProducts",{subCatid:cat._id})}
+                    >
+                      <Card.Content>
+                        <Title>{cat.name}</Title>
+                      </Card.Content>
+                      <Card.Cover source={{ uri: 'https://picsum.photos/700' }}
+                      />
+                    </Card>
                 </View>
               )
           )}
