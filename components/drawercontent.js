@@ -86,7 +86,7 @@ const Drawercontent = ({ navigation }) => {
                       key={cat._id}
                       button
                       style={{ backgroundColor: "#e0e0e0" }}
-                      onClick={() => navigation.navigate("SubCategory")}
+                      onClick={() => navigation.navigate("SubCategory",{catId:cat._id})}
                     >
                       <ListItemIcon>
                         <DoubleArrowIcon

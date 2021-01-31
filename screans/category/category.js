@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from "react-native";
 import axios from "axios";
 import BASE_URL from "../../api";
 import { CategoryContext } from "./categorycontext";
-const Category = () => {
+const Category = ({route,navigation}) => {
+  const {catId} = route.params;
   const { catstate, catdispatch } = useContext(CategoryContext);
   useEffect(() => {
     getAllCategory();
@@ -23,8 +24,11 @@ const Category = () => {
         <View>
           <Text>From Categoty</Text>
           {catstate.categories.map(
-            (cat) => cat.parentId === undefined && <Text>{cat.name}</Text>
-          )}
+            (cat) => cat.parentId && cat.parentId._id.toString() === catId.toString() && <Text>{cat.name}</Text>
+          ) 
+          // : <Text>No categories</Text>
+            
+          }
         </View>
       ) : (
         <View>
