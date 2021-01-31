@@ -41,7 +41,7 @@ const Category = ({ route, navigation }) => {
                     alignItems: "center",
                   }}
                 >
-                    <Card style={{marginVertical: 20}}
+                    <Card style={{marginVertical: 20, width: 300}}
                         onPress={() => navigation.navigate("AllProducts",{subCatid:cat._id})}
                     >
                       <Card.Content>
