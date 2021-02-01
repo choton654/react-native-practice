@@ -6,12 +6,23 @@ import {
   ListSubheader,
 } from "@material-ui/core";
 import DnsRoundedIcon from "@material-ui/icons/DnsRounded";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { View, Text } from "react-native";
 import { CategoryContext } from "../category/categorycontext";
-
+import axios from "axios";
+import BASE_URL from "../../api";
 const Allproducts = ({ route, navigation }) => {
   const { catstate, catdispatch } = useContext(CategoryContext);
+  useEffect(() => {
+    getAllproducts();
+  }, []);
+
+  const getAllproducts = () => {
+    axios
+      .get(`${BASE_URL}/product/api/getallproducts`)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  };
 
   return (
     <View style={{ flex: 1, flexDirection: "column" }}>
@@ -29,7 +40,15 @@ const Allproducts = ({ route, navigation }) => {
             cat.parentId &&
             cat.parentId._id.toString() ===
               route.params.subCatid.toString() && (
-              <ListItem button>
+              <ListItem
+                key={cat._id}
+                button
+                style={{
+                  border: "2px solid #2874f0",
+                  margin: "5px 9px",
+                  maxWidth: "95%",
+                }}
+              >
                 <ListItemIcon>
                   <DnsRoundedIcon />
                 </ListItemIcon>
