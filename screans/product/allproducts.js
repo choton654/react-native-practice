@@ -12,7 +12,7 @@ const Allproducts = ({route, navigation}) => {
     <View style={{flex:1, flexDirection:"column"}}>
      <List.Section title="Choose your products">
            <List.Accordion
-             title="Controlled Accordion"
+             title="List of products"
              left={props => <List.Icon {...props} icon="folder" />}
              expanded={expanded}
              onPress={handlePress}>
