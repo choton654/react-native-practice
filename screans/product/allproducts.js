@@ -1,26 +1,43 @@
-import React,{useContext} from "react";
+import {
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader,
+} from "@material-ui/core";
+import DnsRoundedIcon from "@material-ui/icons/DnsRounded";
+import React, { useContext } from "react";
 import { View, Text } from "react-native";
-import { List } from "react-native-paper";
 import { CategoryContext } from "../category/categorycontext";
 
-const Allproducts = ({route, navigation}) => {
+const Allproducts = ({ route, navigation }) => {
   const { catstate, catdispatch } = useContext(CategoryContext);
-  const [expanded, setExpanded] = React.useState(true);
-  
-  const handlePress = () => setExpanded(!expanded)
+
   return (
-    <View style={{flex:1, flexDirection:"column"}}>
-     <List.Section title="Choose your products">
-           <List.Accordion
-             title="List of products"
-             left={props => <List.Icon {...props} icon="folder" />}
-             expanded={expanded}
-             onPress={handlePress}>
-             {catstate.categories.map((cat)=> cat.parentId && cat.parentId._id.toString() === route.params.subCatid.toString() && 
-             <List.Item title={cat.name} />
-             )}
-           </List.Accordion>
-         </List.Section>
+    <View style={{ flex: 1, flexDirection: "column" }}>
+      <List
+        component="nav"
+        aria-labelledby="nested-list-subheader"
+        subheader={
+          <ListSubheader component="div" id="nested-list-subheader">
+            Choose your product type
+          </ListSubheader>
+        }
+      >
+        {catstate.categories.map(
+          (cat) =>
+            cat.parentId &&
+            cat.parentId._id.toString() ===
+              route.params.subCatid.toString() && (
+              <ListItem button>
+                <ListItemIcon>
+                  <DnsRoundedIcon />
+                </ListItemIcon>
+                <ListItemText primary={cat.name} />
+              </ListItem>
+            )
+        )}
+      </List>
     </View>
   );
 };
