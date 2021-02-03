@@ -12,6 +12,7 @@ export const config = {
         },
         SubCategory: "subcategory",
         AllProducts: "allproducts",
+        Items: "items",
         Cart: "cart",
         Order: "order",
         MyAccount: "account",

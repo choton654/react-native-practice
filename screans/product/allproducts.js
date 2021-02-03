@@ -43,6 +43,7 @@ const Allproducts = ({ route, navigation }) => {
               <ListItem
                 key={cat._id}
                 button
+                onClick={() => navigation.navigate("Items", { id: cat._id })}
                 style={{
                   border: "2px solid #2874f0",
                   margin: "5px 9px",
