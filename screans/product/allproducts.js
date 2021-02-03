@@ -9,10 +9,12 @@ import DnsRoundedIcon from "@material-ui/icons/DnsRounded";
 import React, { useContext, useEffect } from "react";
 import { View, Text } from "react-native";
 import { CategoryContext } from "../category/categorycontext";
+import { ProductContext } from "./productcontext";
 import axios from "axios";
 import BASE_URL from "../../api";
 const Allproducts = ({ route, navigation }) => {
   const { catstate, catdispatch } = useContext(CategoryContext);
+  const { state, dispatch } = useContext(ProductContext);
   useEffect(() => {
     getAllproducts();
   }, []);
@@ -20,7 +22,11 @@ const Allproducts = ({ route, navigation }) => {
   const getAllproducts = () => {
     axios
       .get(`${BASE_URL}/product/api/getallproducts`)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        const {products} = res.data;
+        console.log(products);
+        dispatch({type:"ADD_PRODUCTS", payload:products})
+      })
       .catch((err) => console.log(err));
   };
 
