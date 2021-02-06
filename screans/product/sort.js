@@ -1,5 +1,5 @@
 import React from "react";
-
+import {Modal, View, Text, TouchableHighlight } from "react-native";
 const Sort = ({modal, modalWork})=>{
   
   return (
