@@ -1,5 +1,5 @@
 import React,{useContext} from "react";
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Button, TouchableOpacity } from "react-native";
 import { Card, Title } from "react-native-paper";
 import { ProductContext } from "./productcontext";
 import BASE_URL from "../../api";
@@ -9,7 +9,19 @@ const Items = ({ route, navigation }) => {
   const { state, dispatch } = useContext(ProductContext);
   
   return (
-    <View>
+    <View style={{flex:1}}>
+    <View style={{flex:1, flexDirection:"row"}}>
+         <TouchableOpacity
+              style={{width:"50%", height:"50px", border:"1px solid black", backgroundColor:"lightGrey"}}
+              >
+              <Text style={{margin:"auto"}}>Sort</Text>
+            </TouchableOpacity>
+      <TouchableOpacity
+        style={{width:"50%", height:"50px", border:"1px solid black", backgroundColor:"lightGrey"}}
+        >
+        <Text style={{margin:"auto"}}>Filter</Text>
+      </TouchableOpacity>
+    </View>
       <View style={{flex:1}}>
         {state.products.map((prod)=> prod.category._id.toString() === subcatId.toString() &&
         <View style={{flex:1}}>
