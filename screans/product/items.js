@@ -3,7 +3,7 @@ import { View, Text, Image, Button, TouchableOpacity } from "react-native";
 import { Card, Title } from "react-native-paper";
 import { ProductContext } from "./productcontext";
 import BASE_URL from "../../api";
-import {Sort} from "./sort";
+import Sort from "./sort";
 const Items = ({ route, navigation }) => {
   const subcatId = route.params.id;
   const { state, dispatch } = useContext(ProductContext);
