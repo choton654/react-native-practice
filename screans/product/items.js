@@ -1,23 +1,23 @@
-import React,{useContext} from "react";
+import React,{useContext, useState} from "react";
 import { View, Text, Image, Button, TouchableOpacity } from "react-native";
 import { Card, Title } from "react-native-paper";
 import { ProductContext } from "./productcontext";
 import BASE_URL from "../../api";
-
+import {Sort} from "./sort";
 const Items = ({ route, navigation }) => {
   const subcatId = route.params.id;
   const { state, dispatch } = useContext(ProductContext);
-  
+  const [modalVisible, setModalVisible] = useState(false)
   return (
     <View style={{flex:1}}>
     <View style={{flex:1, flexDirection:"row"}}>
          <TouchableOpacity
-              style={{width:"50%", height:"50px", border:"1px solid black", backgroundColor:"lightGrey"}}
+              style={{width:"50%", height:"50px", border:"1px solid black"}}
               >
               <Text style={{margin:"auto"}}>Sort</Text>
             </TouchableOpacity>
       <TouchableOpacity
-        style={{width:"50%", height:"50px", border:"1px solid black", backgroundColor:"lightGrey"}}
+        style={{width:"50%", height:"50px", border:"1px solid black"}}
         >
         <Text style={{margin:"auto"}}>Filter</Text>
       </TouchableOpacity>
@@ -34,6 +34,7 @@ const Items = ({ route, navigation }) => {
         </View>
         )}
       </View>
+      <Sort modal={modalVisible} modalWork={setModalVisible}/>
     </View>
   );
 };
