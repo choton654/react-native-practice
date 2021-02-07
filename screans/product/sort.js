@@ -1,7 +1,8 @@
 import React from "react";
-import {Modal, View, Text, TouchableHighlight, StyleSheet, Alert} from "react-native";
+import { Modal, View, Text, TouchableHighlight, StyleSheet, Alert } from "react-native";
+
+
 const Sort = ({modal, modalWork})=>{
-  
   return (
     <View style={styles.centeredView}>
           <Modal
@@ -16,14 +17,14 @@ const Sort = ({modal, modalWork})=>{
               <View style={styles.modalView}>
                 <Text style={styles.modalText}>Hello World!</Text>
     
-                <TouchableHighlight
+                {/* <TouchableHighlight
                   style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
                   onPress={() => {
                     modalWork(!modal);
                   }}
                 >
                   <Text>Hide Modal</Text>
-                </TouchableHighlight>
+                </TouchableHighlight> */}
               </View>
             </View>
           </Modal>

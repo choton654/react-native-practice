@@ -3,7 +3,7 @@ import { View, Text, Image, Button, TouchableOpacity } from "react-native";
 import { Card, Title } from "react-native-paper";
 import { ProductContext } from "./productcontext";
 import BASE_URL from "../../api";
-import Sort from "./sort";
+import Sort from "./sort"
 const Items = ({ route, navigation }) => {
   const subcatId = route.params.id;
   const { state, dispatch } = useContext(ProductContext);
@@ -11,7 +11,10 @@ const Items = ({ route, navigation }) => {
   return (
     <View style={{flex:1}}>
     <View style={{flex:1, flexDirection:"row"}}>
-         <TouchableOpacity
+        <TouchableOpacity
+            onPress={() => {
+          setModalVisible(true)
+        }}
               style={{width:"50%", height:"50px", border:"1px solid black"}}
               >
               <Text style={{margin:"auto"}}>Sort</Text>
@@ -25,7 +28,7 @@ const Items = ({ route, navigation }) => {
       <View style={{flex:1}}>
         {state.products.map((prod)=> prod.category._id.toString() === subcatId.toString() &&
         <View style={{flex:1}}>
-           <Card style={{marginVertical: 20, marginLeft:30, width: 300}}>
+           <Card style={{marginVertical: 20, margin: "auto", width: "80%"}}>
               <Card.Content>
               <Title>{prod.name}</Title>
               </Card.Content>
