@@ -29,6 +29,7 @@ import { AuthContext } from "../screans/user/authcontext";
 import Editprofile from "../screans/user/editprofile";
 import Allproducts from "../screans/product/allproducts";
 import Items from "../screans/product/items";
+import Singleitem from "../screans/product/singleitem";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -163,6 +164,7 @@ const HomeNavigation = () => {
       <Stack.Screen name="SubCategory" component={Category} />
       <Stack.Screen name="AllProducts" component={Allproducts} />
       <Stack.Screen name="Items" component={Items} />
+      <Stack.Screen name="SingleItem" component={Singleitem} />
       <Stack.Screen name="Editprofile" component={Editprofile} />
       <Stack.Screen
         name="MyAccount"
