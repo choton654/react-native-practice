@@ -1,8 +1,8 @@
 export const initialState = {
-  user: null || JSON.parse(localStorage.getItem("user")),
+  user: null,
   error: null,
 };
-
+// || JSON.parse(localStorage.getItem("user")),
 export const reducer = (state, action) => {
   switch (action.type) {
     case "ADD_USER":

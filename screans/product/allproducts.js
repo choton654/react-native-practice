@@ -12,23 +12,13 @@ import { CategoryContext } from "../category/categorycontext";
 import { ProductContext } from "./productcontext";
 import axios from "axios";
 import BASE_URL from "../../api";
+import { getAllproducts } from "./productfunc";
 const Allproducts = ({ route, navigation }) => {
   const { catstate, catdispatch } = useContext(CategoryContext);
   const { state, dispatch } = useContext(ProductContext);
   useEffect(() => {
-    getAllproducts();
+    getAllproducts(dispatch);
   }, []);
-
-  const getAllproducts = () => {
-    axios
-      .get(`${BASE_URL}/product/api/getallproducts`)
-      .then((res) => {
-        const {products} = res.data;
-        console.log(products);
-        dispatch({type:"ADD_PRODUCTS", payload:products})
-      })
-      .catch((err) => console.log(err));
-  };
 
   return (
     <View style={{ flex: 1, flexDirection: "column" }}>
@@ -45,7 +35,7 @@ const Allproducts = ({ route, navigation }) => {
           (cat) =>
             cat.parentId &&
             cat.parentId._id.toString() ===
-              route.params.subCatid.toString() && (
+            route.params.subCatid.toString() && (
               <ListItem
                 key={cat._id}
                 button

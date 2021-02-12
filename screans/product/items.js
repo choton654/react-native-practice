@@ -1,12 +1,17 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { View, Text, Image, Button, TouchableOpacity, Modal, StyleSheet, Pressable } from "react-native";
 import { Card, Title } from "react-native-paper";
 import { ProductContext } from "./productcontext";
 import BASE_URL from "../../api";
 import Sort from "./sort"
+import { getAllproducts } from "./productfunc";
+
 const Items = ({ route, navigation }) => {
   const subcatId = route.params.id;
   const { state, dispatch } = useContext(ProductContext);
+  useEffect(() => {
+    getAllproducts(dispatch);
+  }, []);
   const [modalVisible, setModalVisible] = useState(false)
   return (
     <View style={{ flex: 1 }}>
