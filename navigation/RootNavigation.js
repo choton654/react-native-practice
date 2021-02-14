@@ -76,6 +76,7 @@ const Drawer = createDrawerNavigator();
 const HomeNavigation = () => {
   const navigation = useNavigation();
   const { state, dispatch } = useContext(AuthContext);
+  const user = JSON.parse(localStorage.getItem("user"));
 
   return (
     <Stack.Navigator
@@ -107,15 +108,15 @@ const HomeNavigation = () => {
                 variant="subtitle1"
                 style={{ color: "#fce4ec", marginTop: 10, marginRight: 10 }}
               >
-                {state.user ? (
+                {user ? (
                   <PermIdentityIcon
                     onClick={() => navigation.navigate("MyAccount")}
                   />
                 ) : (
-                  <strong onClick={() => navigation.navigate("Login")}>
-                    Login
-                  </strong>
-                )}
+                    <strong onClick={() => navigation.navigate("Login")}>
+                      Login
+                    </strong>
+                  )}
               </Typography>
             </View>
           ),

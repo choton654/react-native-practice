@@ -1,11 +1,11 @@
 import { Typography } from "@material-ui/core";
 import React, { useContext, useEffect } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { AuthContext } from "../user/authcontext";
 import { CartContext } from "./cartcontext";
 import { getCartItems } from "./cartaction";
 import Cartitem from "./cartitem";
-const Cart = () => {
+const Cart = ({ navigation }) => {
   const { cartstate, cartdispatch } = useContext(CartContext);
   const { state, dispatch } = useContext(AuthContext);
   const token = localStorage.getItem("token");
@@ -16,7 +16,7 @@ const Cart = () => {
   }, [])
   return (
     <View>
-      {cartstate.cart === null ? (
+      {user === null || cartstate.cart === null ? (
         <View
           style={{
             width: "80%",
@@ -39,11 +39,18 @@ const Cart = () => {
             >
               <Text style={{ fontWeight: "bold", cursor: "pointer" }}>Go to shopping</Text>
             </Typography>
+            {user === null && <TouchableOpacity
+              onPress={() => navigation.navigate("Login")}
+              style={{ marginVertical: 10, backgroundColor: "#64b5f6", weight: 50, height: 30 }}>
+              <Text style={{ fontWeight: "bold", fontSize: 15, color: "white", marginHorizontal: 10, marginVertical: 5 }}>Login here</Text>
+            </TouchableOpacity>}
           </View>
         </View>
       ) : (
           <View>
-            <Cartitem cart={cartstate.cart} />
+            {cartstate.cart &&
+              <Cartitem cart={cartstate.cart} />
+            }
           </View>
         )}
     </View>

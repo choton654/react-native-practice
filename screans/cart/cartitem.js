@@ -3,17 +3,17 @@ import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import StarRateIcon from "@material-ui/icons/StarRate";
 import DeleteIcon from '@material-ui/icons/Delete';
 import BASE_URL from "../../api"
-import { Button } from 'react-native';
 const Cartitem = ({ cart }) => {
     return (
         <View style={{ flex: 1 }}>
             {cart.cartItem && cart.cartItem.map((item) =>
                 <View style={{
-                    flex: 1, flexDirection: "row", justifyContent: "space-between", marginTop: 20, backgroundColor: "#fafafa"
+                    flex: 1, width: "100%", flexDirection: "row", justifyContent: "space-between", marginTop: 20, backgroundColor: "#fafafa"
                 }}>
                     <View style={{
                         marginHorizontal: 10,
                         marginVertical: 20,
+                        maxWidth: "70%"
                     }}>
                         <Text style={{ fontWeight: "bold", fontSize: 13 }}>{item.productId.name}</Text>
                         <View style={{
