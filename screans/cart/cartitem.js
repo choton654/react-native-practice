@@ -2,14 +2,21 @@ import React from 'react'
 import { StyleSheet, Text, View, TouchableOpacity, Image } from 'react-native';
 import StarRateIcon from "@material-ui/icons/StarRate";
 import DeleteIcon from '@material-ui/icons/Delete';
+import { handleOrder } from "./cartaction";
 import BASE_URL from "../../api"
-const Cartitem = ({ cart }) => {
+const Cartitem = ({ cart, orderId, user, token, cartdispatch, navigation }) => {
+    const cartItemIds =
+        cart &&
+        cart.cartItem &&
+        cart.cartItem.map((item) => item._id);
     return (
         <View style={{ flex: 1 }}>
             {cart.cartItem && cart.cartItem.map((item) =>
-                <View style={{
-                    flex: 1, width: "100%", flexDirection: "row", justifyContent: "space-between", marginTop: 20, backgroundColor: "#fafafa"
-                }}>
+                <View
+                    key={item._id}
+                    style={{
+                        flex: 1, width: "100%", flexDirection: "row", justifyContent: "space-between", marginTop: 20, backgroundColor: "#fafafa"
+                    }}>
                     <View style={{
                         marginHorizontal: 10,
                         marginVertical: 20,
@@ -61,7 +68,17 @@ const Cartitem = ({ cart }) => {
                 <TouchableOpacity
                     style={{ width: "50%", height: "50px", backgroundColor: "#f44336", marginHorizontal: 10, marginVertical: 20 }}
                 >
-                    <Text style={{ margin: "auto", fontWeight: "bold", color: "white" }}>Place Order</Text>
+                    <Text style={{ margin: "auto", fontWeight: "bold", color: "white" }} onPress={() =>
+                        handleOrder(
+                            cart.price,
+                            cartItemIds,
+                            orderId,
+                            user,
+                            token,
+                            cartdispatch,
+                            navigation
+                        )
+                    }>Place Order</Text>
                 </TouchableOpacity>
 
             </View>

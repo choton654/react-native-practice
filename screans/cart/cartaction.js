@@ -112,7 +112,7 @@ export const handleOrder = (
     user,
     token,
     cartdispatch,
-    enqueueSnackbar
+    navigation
 ) => {
     axios
         .post(
@@ -127,14 +127,10 @@ export const handleOrder = (
         .then((res) => {
             console.log(res.data);
             const { order, user: updatedUser } = res.data;
-            const { success } = res.data;
-            console.log(user.history, typeof updatedUser);
-            user.history = updatedUser === "" ? orderId : updatedUser.history;
-            console.log(user.history);
+            console.log(updatedUser);
+            updatedUser.history !== null && localStorage.setItem("user", JSON.stringify(updatedUser));
             cartdispatch({ type: "PLACE_ORDER", payload: order });
-            enqueueSnackbar(success, { variant: "success" });
-            window.location.assign(`/${order._id}/vieworder`);
-            // history.push(`/${order._id}/vieworder`);
+            navigation.navigate("Order");
         })
         .catch((err) => console.log(err));
 };

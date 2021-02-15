@@ -11,6 +11,8 @@ const Cart = ({ navigation }) => {
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user && user._id;
+  const orderId = user.history === null ? undefined : user.history;
+
   useEffect(() => {
     getCartItems(cartdispatch, token, userId)
   }, [])
@@ -49,7 +51,7 @@ const Cart = ({ navigation }) => {
       ) : (
           <View>
             {cartstate.cart &&
-              <Cartitem cart={cartstate.cart} />
+              <Cartitem cart={cartstate.cart} orderId={orderId} user={user} token={token} cartdispatch={cartdispatch} navigation={navigation} />
             }
           </View>
         )}

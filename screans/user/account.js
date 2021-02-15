@@ -14,7 +14,7 @@ import { StyleSheet, Text, View, Image } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "./authcontext";
 const Account = () => {
-  const { state, dispatch } = useContext(AuthContext);
+  // const { state, dispatch } = useContext(AuthContext);
   const navigation = useNavigation();
   const handleLogout = () => {
     localStorage.clear();
@@ -22,7 +22,7 @@ const Account = () => {
     navigation.navigate("Home");
   };
   const user = JSON.parse(localStorage.getItem("user"));
-  const userId = user._id;
+  const userId = user && user._id;
   const token = localStorage.getItem("token");
   useEffect(() => {
     singleUser();
@@ -49,7 +49,7 @@ const Account = () => {
           backgroundColor: "#2874f0",
         }}
       >
-        {state.user && (
+        {user && (
           <View style={{ alignItems: "center" }}>
             <View style={{ alignItems: "center", flexDirection: "row" }}>
               <Image
@@ -79,7 +79,7 @@ const Account = () => {
               />
             </View>
             <Typography variant="h6" style={{ color: "white", marginTop: 5 }}>
-              <strong>{state.user.username}</strong>
+              <strong>{user.username}</strong>
             </Typography>
             <View
               style={{
@@ -94,7 +94,7 @@ const Account = () => {
                 variant="subtitle1"
                 style={{ color: "white", marginLeft: 105 }}
               >
-                {state.user.email}
+                {user.email}
               </Typography>
 
               <EditOutlinedIcon
