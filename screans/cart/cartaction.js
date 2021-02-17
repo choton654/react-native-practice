@@ -73,9 +73,9 @@ export const addTocart = (
     productId,
     price,
     cartdispatch,
-    // enqueueSnackbar,
     userId,
     token,
+    navigation
     // itemNumber,
     // setItemnumber
 ) => {
@@ -96,6 +96,7 @@ export const addTocart = (
             // const { success } = res.data;
             // enqueueSnackbar(success, { variant: "success" });
             getCartItems(cartdispatch, token, userId);
+            navigation.navigate("Cart")
         })
         .catch((err) => {
             const error = err.response.data.err;

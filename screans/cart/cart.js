@@ -11,7 +11,17 @@ const Cart = ({ navigation }) => {
   const token = localStorage.getItem("token");
   const user = JSON.parse(localStorage.getItem("user"));
   const userId = user && user._id;
-  const orderId = user.history === null ? undefined : user.history;
+  let orderId;
+  if (user) {
+    if (user.history === null) {
+      orderId = undefined
+    } else {
+      orderId = user.history
+    }
+  } else {
+    orderId = undefined
+  }
+  // const orderId = user === undefined ? null : user.history === null ? undefined : user.history;
 
   useEffect(() => {
     getCartItems(cartdispatch, token, userId)

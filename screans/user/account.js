@@ -1,7 +1,6 @@
 import { Typography, Paper, Divider } from "@material-ui/core";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import EditOutlinedIcon from "@material-ui/icons/EditOutlined";
 import React, { useEffect, useState, useContext } from "react";
 import {
   NavigationContainer,
@@ -10,11 +9,10 @@ import {
 } from "@react-navigation/native";
 import axios from "axios";
 import BASE_URL from "../../api";
-import { StyleSheet, Text, View, Image } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { AuthContext } from "./authcontext";
 const Account = () => {
-  // const { state, dispatch } = useContext(AuthContext);
+  const { state, dispatch } = useContext(AuthContext);
   const navigation = useNavigation();
   const handleLogout = () => {
     localStorage.clear();
@@ -50,7 +48,10 @@ const Account = () => {
         }}
       >
         {user && (
-          <View style={{ alignItems: "center" }}>
+          <View style={{
+            alignItems: "center",
+            backgroundColor: "#2874f0",
+          }}>
             <View style={{ alignItems: "center", flexDirection: "row" }}>
               <Image
                 source={{
@@ -78,101 +79,93 @@ const Account = () => {
                 }}
               />
             </View>
-            <Typography variant="h6" style={{ color: "white", marginTop: 5 }}>
-              <strong>{user.username}</strong>
-            </Typography>
-            <View
-              style={{
-                flexDirection: "row",
-                flex: 1,
-                justifyContent: "space-between",
-                width: "100%",
-                height: 30,
-              }}
+            <Text style={{ color: "white", marginVertical: 5, fontSize: 17, fontWeight: "bold" }}>
+              {user.username}
+            </Text>
+            <Text
+              style={{ color: "white", marginVertical: 5, fontSize: 15 }}
             >
-              <Typography
-                variant="subtitle1"
-                style={{ color: "white", marginLeft: 105 }}
-              >
-                {user.email}
-              </Typography>
+              {user.email}
+            </Text>
+            <View style={{ flex: 1, marginVertical: 5 }}>
+              <TouchableOpacity onPress={() => navigation.navigate("Editprofile")} style={{ flexDirection: "row", backgroundColor: "white" }}>
+                <Text style={{ fontWeight: "bold", fontSize: 16, color: "#2874f0", marginHorizontal: 10, marginVertical: 5 }}>Edit profile</Text>
+              </TouchableOpacity>
 
-              <EditOutlinedIcon
-                fontSize="small"
-                style={{ color: "white", marginRight: 20 }}
-                onClick={() => navigation.navigate("Editprofile")}
-              />
             </View>
           </View>
         )}
       </View>
-      <Paper
-        style={{ height: 100, width: "95%", marginLeft: 8, marginTop: 10 }}
-      >
-        <Typography variant="h6" style={{ margin: "10px 20px" }}>
-          My Orders
-        </Typography>
-        <Divider />
-      </Paper>
-      <Paper
-        style={{ height: 100, width: "95%", marginLeft: 8, marginTop: 10 }}
-      >
-        <Typography variant="h6" style={{ margin: "10px 20px" }}>
-          My Reviews
-        </Typography>
-        <Divider />
-      </Paper>
-      <Paper
-        style={{
-          height: 100,
-          width: "95%",
-          marginLeft: 8,
-          marginTop: 10,
-          marginBottom: 10,
-        }}
-      >
-        <Typography variant="h6" style={{ margin: "10px 20px" }}>
-          My Address
-        </Typography>
-        <Divider />
-      </Paper>
-      <Paper style={{ height: 100, width: "100%", marginTop: 10 }}>
-        <View
-          style={{
-            flexDirection: "row",
-            marginLeft: 20,
-            marginTop: 10,
-            marginBottom: 10,
-          }}
-        >
-          <SettingsIcon fontSize="small" style={{ marginTop: 5 }} />
-          <Typography
-            variant="h6"
-            style={{ marginLeft: 10 }}
-            onClick={() => navigation.navigate("Editprofile")}
+      <View style={{ flex: 1, marginVertical: 20 }}>
+        <View style={{ flex: 1, marginVertical: 10 }}>
+          <Paper
+            style={{ height: 100, width: "95%", margin: "auto" }}
           >
-            Account Settings
-          </Typography>
-        </View>
-        <Divider />
-        <View
-          style={{
-            flexDirection: "row",
-            marginLeft: 20,
-            marginTop: 10,
-            marginBottom: 10,
-          }}
-        >
-          <ExitToAppIcon fontSize="small" style={{ marginTop: 5 }} />
-          <Typography
-            variant="h6"
-            style={{ marginLeft: 10 }}
-            onClick={handleLogout}
+            <Typography variant="h6" style={{ margin: "10px 20px" }}>
+              My Orders
+        </Typography>
+            <Divider />
+          </Paper>
+          <Paper
+            style={{ height: 100, width: "95%", margin: "auto" }}
           >
-            Log out
-          </Typography>
+            <Typography variant="h6" style={{ margin: "10px 20px" }}>
+              My Reviews
+        </Typography>
+            <Divider />
+          </Paper>
+          <Paper
+            style={{
+              height: 100,
+              width: "95%",
+              margin: "auto"
+            }}
+          >
+            <Typography variant="h6" style={{ margin: "10px 20px" }}>
+              My Address
+        </Typography>
+            <Divider />
+          </Paper>
         </View>
-      </Paper>
+
+        <Paper style={{ height: 100, width: "100%", marginTop: 10 }}>
+          <View
+            style={{
+              flexDirection: "row",
+              marginLeft: 20,
+              marginTop: 10,
+              marginBottom: 10,
+            }}
+          >
+            <SettingsIcon fontSize="small" style={{ marginTop: 5 }} />
+            <Typography
+              variant="h6"
+              style={{ marginLeft: 10 }}
+              onClick={() => navigation.navigate("Editprofile")}
+            >
+              Account Settings
+          </Typography>
+          </View>
+          <Divider />
+          <View
+            style={{
+              flexDirection: "row",
+              marginLeft: 20,
+              marginTop: 10,
+              marginBottom: 10,
+            }}
+          >
+            <ExitToAppIcon fontSize="small" style={{ marginTop: 5 }} />
+            <Typography
+              variant="h6"
+              style={{ marginLeft: 10 }}
+              onClick={handleLogout}
+            >
+              Log out
+          </Typography>
+          </View>
+        </Paper>
+      </View>
     </View>
   );
 };

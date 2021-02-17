@@ -76,7 +76,13 @@ const Drawer = createDrawerNavigator();
 const HomeNavigation = () => {
   const navigation = useNavigation();
   const { state, dispatch } = useContext(AuthContext);
-  const user = JSON.parse(localStorage.getItem("user"));
+  let user;
+  // const user = JSON.parse(localStorage.getItem("user")) || state.user
+  if (state.user) {
+    user = state.user
+  } else {
+    user = JSON.parse(localStorage.getItem("user"))
+  }
 
   return (
     <Stack.Navigator

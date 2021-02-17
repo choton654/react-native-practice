@@ -22,7 +22,7 @@ const Cartitem = ({ cart, orderId, user, token, cartdispatch, navigation }) => {
                         marginVertical: 20,
                         maxWidth: "70%"
                     }}>
-                        <Text style={{ fontWeight: "bold", fontSize: 13 }}>{item.productId.name}</Text>
+                        <Text style={{ fontWeight: "bold", fontSize: 13 }}>{item.productId.name}  ({item.quantity})</Text>
                         <View style={{
                             marginVertical: "10px",
                             width: "40px",
@@ -44,8 +44,8 @@ const Cartitem = ({ cart, orderId, user, token, cartdispatch, navigation }) => {
                                 />
                             </View>
                         </View>
-                        <Text style={{ fontSize: 15 }}>₹{item.price}</Text>
-                        <TouchableOpacity style={{ border: "1px solid black", maxWidth: "35%", height: 30, marginTop: 20, flexDirection: "row" }}>
+                        <Text style={{ fontSize: 15 }}>₹{parseInt(item.price) * parseInt(item.quantity)}</Text>
+                        <TouchableOpacity style={{ border: "1px solid black", maxWidth: 100, height: 30, marginTop: 20, flexDirection: "row" }}>
                             <DeleteIcon fontSize="small" style={{ color: "grey", margin: "auto" }} />
                             <Text style={{ margin: "auto" }}>Remove</Text>
                         </TouchableOpacity>
@@ -59,7 +59,7 @@ const Cartitem = ({ cart, orderId, user, token, cartdispatch, navigation }) => {
             )}
             <View style={{
                 flex: 1, flexDirection: "row", position: "sticky", bottom: "0", justifyContent: "space-between", backgroundColor: "#fafafa",
-                marginTop: 30
+                marginTop: 30, borderTop: "1px solid red"
             }}>
                 <View style={{ marginHorizontal: 20, marginVertical: 20, flexDirection: "column" }}>
                     <Text style={{ fontSize: 20 }}>₹{cart.price}</Text>

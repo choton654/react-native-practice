@@ -15,7 +15,7 @@ const Items = ({ route, navigation }) => {
   const [modalVisible, setModalVisible] = useState(false)
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ flex: 1, flexDirection: "row" }}>
+      <View style={{ flex: 1, flexDirection: "row", maxHeight: 50 }}>
         <TouchableOpacity
           onPress={() => {
             setModalVisible(true)

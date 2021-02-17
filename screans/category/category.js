@@ -25,9 +25,9 @@ const Category = ({ route, navigation }) => {
       .catch((err) => console.log(err));
   };
   return (
-    <View style={{flex:1}}>
+    <View style={{ flex: 1 }}>
       {catstate.categories.length !== 0 ? (
-        <View style={{ flexDirection: "cloumn", flex:1 }}>
+        <View style={{ flexDirection: "cloumn", flex: 1 }}>
           {catstate.categories.map(
             (cat) =>
               cat.parentId &&
@@ -41,24 +41,24 @@ const Category = ({ route, navigation }) => {
                     alignItems: "center",
                   }}
                 >
-                    <Card style={{marginVertical: 20, width: 300}}
-                        onPress={() => navigation.navigate("AllProducts",{subCatid:cat._id})}
-                    >
-                      <Card.Content>
-                        <Title>{cat.name}</Title>
-                      </Card.Content>
-                      <Card.Cover source={{ uri: 'https://picsum.photos/700' }}
-                      />
-                    </Card>
+                  <Card style={{ marginVertical: 20, width: 300 }}
+                    onPress={() => navigation.navigate("AllProducts", { subCatid: cat._id })}
+                  >
+                    <Card.Content>
+                      <Title>{cat.name}</Title>
+                    </Card.Content>
+                    <Card.Cover source={{ uri: 'https://images.pexels.com/photos/1682699/pexels-photo-1682699.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260' }}
+                    />
+                  </Card>
                 </View>
               )
           )}
         </View>
       ) : (
-        <View>
-          <Text>Loading</Text>
-        </View>
-      )}
+          <View>
+            <Text>Loading</Text>
+          </View>
+        )}
     </View>
   );
 };

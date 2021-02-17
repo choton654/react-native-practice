@@ -96,7 +96,7 @@ const Singleitem = ({ route, navigation }) => {
                 </View>
                 <View style={{ flex: 1, flexDirection: "row", position: "sticky", bottom: "0" }}>
                     <TouchableOpacity
-                        onPress={() => addTocart(product._id, product.price, cartdispatch, userId, token)}
+                        onPress={() => addTocart(product._id, product.price, cartdispatch, userId, token, navigation)}
                         style={{ width: "50%", height: "50px", backgroundColor: "#fbc02d" }}
                     >
                         <Text style={{ margin: "auto", fontWeight: "bold", color: "black" }}>Add to Cart</Text>
