@@ -30,7 +30,11 @@ const Login = () => {
         setPassword("");
         navigation.navigate("Home");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        const error = err.response.data;
+        console.log(error);
+        dispatch({ type: "USER_ERROR", payload: error });
+      });
   };
   const handleRegister = () => {
     axios
@@ -114,7 +118,7 @@ const Login = () => {
       >
         Login
       </Button>
-      <View style={{ alignItems: "center", flex: 1, marginVertical: 10 }}>
+      <View style={{ alignItems: "center", marginVertical: 10, height: "10%" }}>
         <Text>Don't have an account?</Text>
         <Text
           style={{ fontWeight: "bold", color: "#1e88e5" }}
@@ -123,6 +127,7 @@ const Login = () => {
           Register here
         </Text>
       </View>
+      <Text style={{ fontWeight: "bold", color: "red", marginHorizontal: "auto" }}>{state.error && state.error.err}</Text>
       <Portal>
         <Modal
           style={{ width: "90%", marginHorizontal: "auto" }}

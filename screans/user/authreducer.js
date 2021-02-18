@@ -25,5 +25,17 @@ export const reducer = (state, action) => {
         ...state,
         user: action.payload,
       };
+    case "ADD_ADDRESS":
+      return {
+        ...state,
+        user: action.payload,
+      };
+    case "USER_ERROR":
+      return {
+        ...state,
+        error: action.payload,
+      };
+    default:
+      break;
   }
 };

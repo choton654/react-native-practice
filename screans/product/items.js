@@ -42,7 +42,7 @@ const Items = ({ route, navigation }) => {
           </View>
         )}
       </View>
-      {/* <Sort modal={modalVisible} modalWork={setModalVisible}/> */}
+      {/* <Sort modal={modalVisible} modalWork={setModalVisible} /> */}
     </View>
   );
 };

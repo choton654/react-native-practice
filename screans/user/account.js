@@ -101,18 +101,24 @@ const Account = () => {
           <Paper
             style={{ height: 100, width: "95%", margin: "auto" }}
           >
-            <Typography variant="h6" style={{ margin: "10px 20px" }}>
-              My Orders
-        </Typography>
+            <View style={{ flex: 1, marginVertical: 15 }}>
+              <Text style={{ fontSize: 20, marginHorizontal: 20 }}>My Orders</Text>
+            </View>
             <Divider />
+            <View style={{ flex: 1, marginVertical: 10 }}>
+              <Text style={{ fontSize: 15, marginHorizontal: 20, marginLeft: "auto", color: "#2874f0" }}>View orders</Text>
+            </View>
           </Paper>
           <Paper
             style={{ height: 100, width: "95%", margin: "auto" }}
           >
-            <Typography variant="h6" style={{ margin: "10px 20px" }}>
-              My Reviews
-        </Typography>
+            <View style={{ flex: 1, marginVertical: 15 }}>
+              <Text style={{ fontSize: 20, marginHorizontal: 20 }}>My Reviews</Text>
+            </View>
             <Divider />
+            <View style={{ flex: 1, marginVertical: 10 }}>
+              <Text style={{ fontSize: 15, marginHorizontal: 20, marginLeft: "auto", color: "#2874f0" }}>View reviews</Text>
+            </View>
           </Paper>
           <Paper
             style={{
@@ -121,10 +127,13 @@ const Account = () => {
               margin: "auto"
             }}
           >
-            <Typography variant="h6" style={{ margin: "10px 20px" }}>
-              My Address
-        </Typography>
+            <View style={{ flex: 1, marginVertical: 15 }}>
+              <Text style={{ fontSize: 20, marginHorizontal: 20 }}>My Address</Text>
+            </View>
             <Divider />
+            <View style={{ flex: 1, marginVertical: 10 }}>
+              <Text style={{ fontSize: 15, marginHorizontal: 20, marginLeft: "auto", color: "#2874f0" }} onPress={() => navigation.navigate("AddLocation")}>Add an address</Text>
+            </View>
           </Paper>
         </View>
 

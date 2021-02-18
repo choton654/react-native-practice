@@ -5,7 +5,11 @@ import { AuthContext } from "../user/authcontext";
 import { CartContext } from "./cartcontext";
 import { getCartItems } from "./cartaction";
 import Cartitem from "./cartitem";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
+
 const Cart = ({ navigation }) => {
+
   const { cartstate, cartdispatch } = useContext(CartContext);
   const { state, dispatch } = useContext(AuthContext);
   const token = localStorage.getItem("token");
@@ -28,7 +32,7 @@ const Cart = ({ navigation }) => {
   }, [])
   return (
     <View>
-      {user === null || cartstate.cart === null ? (
+      {user === null ? (
         <View
           style={{
             width: "80%",
@@ -44,13 +48,10 @@ const Cart = ({ navigation }) => {
             <Typography variant="subtitle1" style={{ textAlign: "center" }}>
               It's good day to buy the items to saved for latter!
             </Typography>
-            <Typography
-              variant="subtitle2"
-              color="primary"
-            // onClick={handleShopping}
-            >
+            <View style={{ flex: 1, flexDirection: "column", alignItems: "center" }}>
               <Text style={{ fontWeight: "bold", cursor: "pointer" }}>Go to shopping</Text>
-            </Typography>
+              <Text style={{ fontWeight: "bold", cursor: "pointer", color: "red" }}>{cartstate.error && cartstate.error.err}</Text>
+            </View>
             {user === null && <TouchableOpacity
               onPress={() => navigation.navigate("Login")}
               style={{ marginVertical: 10, backgroundColor: "#64b5f6", weight: 50, height: 30 }}>
@@ -60,9 +61,11 @@ const Cart = ({ navigation }) => {
         </View>
       ) : (
           <View>
-            {cartstate.cart &&
+            {cartstate.cart ?
               <Cartitem cart={cartstate.cart} orderId={orderId} user={user} token={token} cartdispatch={cartdispatch} navigation={navigation} />
-            }
+              : <View style={{ flex: 1, marginVertical: 50, marginHorizontal: "auto" }} >
+                <CircularProgress />
+              </View>}
           </View>
         )}
     </View>

@@ -1,11 +1,6 @@
 import BASE_URL from "../../api";
 import axios from "axios";
 
-// const token = localStorage.getItem("token");
-// console.log(token);
-// const user = JSON.parse(localStorage.getItem("user"));
-// const userId = user && user._id;
-// console.log(userId);
 export const getCartItems = (cartdispatch, token, userId) => {
     axios
         .get(`${BASE_URL}/cart/api/${userId}/getcart`, {
@@ -19,9 +14,9 @@ export const getCartItems = (cartdispatch, token, userId) => {
             cartdispatch({ type: "ADD_TO_CART", payload: cart });
         })
         .catch((err) => {
-            console.log(err);
-            // const error = err.response.data;
-            // cartdispatch({ type: "CART_ERROR", payload: error });
+            const error = err.response.data;
+            console.log(error);
+            cartdispatch({ type: "CART_ERROR", payload: error });
         });
 };
 export const handleRemove = (

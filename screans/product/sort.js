@@ -1,7 +1,8 @@
+import { Portal } from "@material-ui/core";
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 
-const Sort = ({modal, modalWork}) => {
+const Sort = ({ modal, modalWork }) => {
   // const [modalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.centeredView}>
@@ -33,6 +34,8 @@ const Sort = ({modal, modalWork}) => {
         <Text style={styles.textStyle}>Show Modal</Text>
       </Pressable>
     </View>
+
+
   );
 };
 

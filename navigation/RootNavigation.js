@@ -30,6 +30,7 @@ import Editprofile from "../screans/user/editprofile";
 import Allproducts from "../screans/product/allproducts";
 import Items from "../screans/product/items";
 import Singleitem from "../screans/product/singleitem";
+import Address from "../screans/user/address";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -110,20 +111,27 @@ const HomeNavigation = () => {
               >
                 <ShoppingCartIcon style={{ color: "#fce4ec" }} />
               </IconButton>
-              <Typography
-                variant="subtitle1"
-                style={{ color: "#fce4ec", marginTop: 10, marginRight: 10 }}
+              <View
+                style={{ color: "#fce4ec", marginHorizontal: 10, marginVertical: 8 }}
               >
                 {user ? (
-                  <PermIdentityIcon
+                  <IconButton
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
                     onClick={() => navigation.navigate("MyAccount")}
-                  />
+                  >
+                    <PermIdentityIcon
+                      style={{ cursor: "pointer" }}
+                    />
+                  </IconButton>
+
                 ) : (
-                    <strong onClick={() => navigation.navigate("Login")}>
+                    <Text onPress={() => navigation.navigate("Login")} style={{ fontWeight: "bold", color: "white", marginVertical: 5, fontSize: 15 }}>
                       Login
-                    </strong>
+                    </Text>
                   )}
-              </Typography>
+              </View>
             </View>
           ),
           headerTitle: () => (
@@ -173,6 +181,7 @@ const HomeNavigation = () => {
       <Stack.Screen name="Items" component={Items} />
       <Stack.Screen name="SingleItem" component={Singleitem} />
       <Stack.Screen name="Editprofile" component={Editprofile} />
+      <Stack.Screen name="AddLocation" component={Address} />
       <Stack.Screen
         name="MyAccount"
         component={Account}
