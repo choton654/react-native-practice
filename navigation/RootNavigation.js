@@ -30,11 +30,6 @@ import Allproducts from "../screans/product/allproducts";
 import Items from "../screans/product/items";
 import Singleitem from "../screans/product/singleitem";
 import Address from "../screans/user/address";
-import * as PusherPushNotifications from "@pusher/push-notifications-web";
-
-const beamsClient = new PusherPushNotifications.Client({
-  instanceId: "f3a8ef03-ae7a-427f-aa96-8521bd4c33dd",
-});
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -244,16 +239,6 @@ const HomeNavigation = () => {
 };
 
 function RootNavigation() {
-  useEffect(() => {
-    beamsClient
-      .start()
-      .then(() => beamsClient.getDeviceId())
-      .then((deviceId) => {
-        console.log(deviceId); // Will log something like web-1234-1234-1234-1234
-      })
-      .catch((e) => console.error("Could not get device id", e));
-  }, []);
-
   return (
     <NavigationContainer linking={linking}>
       <Drawer.Navigator
