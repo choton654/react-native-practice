@@ -1,26 +1,26 @@
 import { Typography, Paper, Divider } from "@material-ui/core";
 import SettingsIcon from "@material-ui/icons/Settings";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
-import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import {
-  NavigationContainer,
+  // NavigationContainer,
   useNavigation,
-  Link,
+  // Link,
 } from "@react-navigation/native";
 import axios from "axios";
 import BASE_URL from "../../api";
 import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { AuthContext } from "./authcontext";
 const Account = () => {
-  const { state, dispatch } = useContext(AuthContext);
+  const { dispatch } = useContext(AuthContext);
   const navigation = useNavigation();
   const handleLogout = () => {
     localStorage.clear();
     dispatch({ type: "LOGOUT_USER" });
     navigation.navigate("Home");
   };
-  const user = JSON.parse(localStorage.getItem("user"));
-  const userId = user && user._id;
+  const user1 = JSON.parse(localStorage.getItem("user"));
+  const userId = user1 && user1._id;
   const token = localStorage.getItem("token");
   useEffect(() => {
     singleUser();
@@ -45,13 +45,13 @@ const Account = () => {
         style={{
           height: "25%",
           backgroundColor: "#2874f0",
-        }}
-      >
-        {user && (
-          <View style={{
-            alignItems: "center",
-            backgroundColor: "#2874f0",
-          }}>
+        }}>
+        {user1 && (
+          <View
+            style={{
+              alignItems: "center",
+              backgroundColor: "#2874f0",
+            }}>
             <View style={{ alignItems: "center", flexDirection: "row" }}>
               <Image
                 source={{
@@ -79,60 +79,100 @@ const Account = () => {
                 }}
               />
             </View>
-            <Text style={{ color: "white", marginVertical: 5, fontSize: 17, fontWeight: "bold" }}>
-              {user.username}
-            </Text>
             <Text
-              style={{ color: "white", marginVertical: 5, fontSize: 15 }}
-            >
-              {user.email}
+              style={{
+                color: "white",
+                marginVertical: 5,
+                fontSize: 17,
+                fontWeight: "bold",
+              }}>
+              {user1.username}
+            </Text>
+            <Text style={{ color: "white", marginVertical: 5, fontSize: 15 }}>
+              {user1.email}
             </Text>
             <View style={{ flex: 1, marginVertical: 5 }}>
-              <TouchableOpacity onPress={() => navigation.navigate("Editprofile")} style={{ flexDirection: "row", backgroundColor: "white" }}>
-                <Text style={{ fontWeight: "bold", fontSize: 16, color: "#2874f0", marginHorizontal: 10, marginVertical: 5 }}>Edit profile</Text>
+              <TouchableOpacity
+                onPress={() => navigation.navigate("Editprofile")}
+                style={{ flexDirection: "row", backgroundColor: "white" }}>
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: 16,
+                    color: "#2874f0",
+                    marginHorizontal: 10,
+                    marginVertical: 5,
+                  }}>
+                  Edit profile
+                </Text>
               </TouchableOpacity>
-
             </View>
           </View>
         )}
       </View>
       <View style={{ flex: 1, marginVertical: 20 }}>
         <View style={{ flex: 1, marginVertical: 10 }}>
-          <Paper
-            style={{ height: 100, width: "95%", margin: "auto" }}
-          >
+          <Paper style={{ height: 100, width: "95%", margin: "auto" }}>
             <View style={{ flex: 1, marginVertical: 15 }}>
-              <Text style={{ fontSize: 20, marginHorizontal: 20 }}>My Orders</Text>
+              <Text style={{ fontSize: 20, marginHorizontal: 20 }}>
+                My Orders
+              </Text>
             </View>
             <Divider />
             <View style={{ flex: 1, marginVertical: 10 }}>
-              <Text style={{ fontSize: 15, marginHorizontal: 20, marginLeft: "auto", color: "#2874f0" }}>View orders</Text>
+              <Text
+                style={{
+                  fontSize: 15,
+                  marginHorizontal: 20,
+                  marginLeft: "auto",
+                  color: "#2874f0",
+                }}>
+                View orders
+              </Text>
             </View>
           </Paper>
-          <Paper
-            style={{ height: 100, width: "95%", margin: "auto" }}
-          >
+          <Paper style={{ height: 100, width: "95%", margin: "auto" }}>
             <View style={{ flex: 1, marginVertical: 15 }}>
-              <Text style={{ fontSize: 20, marginHorizontal: 20 }}>My Reviews</Text>
+              <Text style={{ fontSize: 20, marginHorizontal: 20 }}>
+                My Reviews
+              </Text>
             </View>
             <Divider />
             <View style={{ flex: 1, marginVertical: 10 }}>
-              <Text style={{ fontSize: 15, marginHorizontal: 20, marginLeft: "auto", color: "#2874f0" }}>View reviews</Text>
+              <Text
+                style={{
+                  fontSize: 15,
+                  marginHorizontal: 20,
+                  marginLeft: "auto",
+                  color: "#2874f0",
+                }}>
+                View reviews
+              </Text>
             </View>
           </Paper>
           <Paper
             style={{
               height: 100,
               width: "95%",
-              margin: "auto"
-            }}
-          >
+              margin: "auto",
+            }}>
             <View style={{ flex: 1, marginVertical: 15 }}>
-              <Text style={{ fontSize: 20, marginHorizontal: 20 }}>My Address</Text>
+              <Text style={{ fontSize: 20, marginHorizontal: 20 }}>
+                My Address
+              </Text>
             </View>
             <Divider />
             <View style={{ flex: 1, marginVertical: 10 }}>
-              <Text style={{ fontSize: 15, marginHorizontal: 20, marginLeft: "auto", color: "#2874f0" }} onPress={() => navigation.navigate("AddLocation")}>Add an address</Text>
+              <Text
+                style={{
+                  fontSize: 15,
+                  marginHorizontal: 20,
+                  marginLeft: "auto",
+                  color: "#2874f0",
+                }}
+                onPress={() => navigation.navigate("AddLocation")}>
+                Add an address
+              </Text>
             </View>
           </Paper>
         </View>
@@ -144,16 +184,14 @@ const Account = () => {
               marginLeft: 20,
               marginTop: 10,
               marginBottom: 10,
-            }}
-          >
-            <SettingsIcon fontSize="small" style={{ marginTop: 5 }} />
+            }}>
+            <SettingsIcon fontSize='small' style={{ marginTop: 5 }} />
             <Typography
-              variant="h6"
+              variant='h6'
               style={{ marginLeft: 10 }}
-              onClick={() => navigation.navigate("Editprofile")}
-            >
+              onClick={() => navigation.navigate("Editprofile")}>
               Account Settings
-          </Typography>
+            </Typography>
           </View>
           <Divider />
           <View
@@ -162,16 +200,14 @@ const Account = () => {
               marginLeft: 20,
               marginTop: 10,
               marginBottom: 10,
-            }}
-          >
-            <ExitToAppIcon fontSize="small" style={{ marginTop: 5 }} />
+            }}>
+            <ExitToAppIcon fontSize='small' style={{ marginTop: 5 }} />
             <Typography
-              variant="h6"
+              variant='h6'
               style={{ marginLeft: 10 }}
-              onClick={handleLogout}
-            >
+              onClick={handleLogout}>
               Log out
-          </Typography>
+            </Typography>
           </View>
         </Paper>
       </View>

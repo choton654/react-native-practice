@@ -5,7 +5,7 @@ import { Button } from "@material-ui/core";
 import { SearchBar } from "react-native-elements";
 const HomeScreen = () => {
   const navigation = useNavigation();
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
   return (
     <View>
       {/* <SearchBar
@@ -18,10 +18,9 @@ const HomeScreen = () => {
       <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
         <Text>Home Screen</Text>
         <Button
-          variant="contained"
-          color="primary"
-          onClick={() => navigation.navigate("Details")}
-        >
+          variant='contained'
+          color='primary'
+          onClick={() => navigation.navigate("Details")}>
           <Text style={{ color: "#ffc107" }}>Click me</Text>
         </Button>
       </View>

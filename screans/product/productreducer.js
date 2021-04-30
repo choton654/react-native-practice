@@ -1,14 +1,14 @@
 export const initialState = {
   products: [],
-  singleProduct: {}
-}
+  singleProduct: {},
+};
 
 export const reducer = (state, action) => {
-    switch (action.type) {
-      case "ADD_PRODUCTS":
-        return {
-          ...state,
-          products: action.payload,
-        };
-    }
-}
+  switch (action.type) {
+    case "ADD_PRODUCTS":
+      return {
+        ...state,
+        products: action.payload,
+      };
+  }
+};

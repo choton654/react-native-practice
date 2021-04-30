@@ -58,16 +58,14 @@ const Login = () => {
           height: "30%",
           backgroundColor: "#2874f0",
           flexDirection: "row",
-        }}
-      >
+        }}>
         <Text
           style={{
             color: "white",
             fontSize: 15,
             marginLeft: 20,
             marginTop: 30,
-          }}
-        >
+          }}>
           Please enter your details to continue
         </Text>
         <Image
@@ -84,7 +82,7 @@ const Login = () => {
         />
       </View>
       <TextInput
-        placeholder="Email"
+        placeholder='Email'
         value={email}
         onChangeText={(text) => setEmail(text)}
         style={{
@@ -95,7 +93,7 @@ const Login = () => {
         }}
       />
       <TextInput
-        placeholder="Password"
+        placeholder='Password'
         value={password}
         onChangeText={(text) => setPassword(text)}
         style={{
@@ -107,45 +105,44 @@ const Login = () => {
       />
 
       <Button
-        mode="contained"
-        color="#f44336"
+        mode='contained'
+        color='#f44336'
         onPress={handleLogin}
         style={{
           marginTop: 10,
           width: "50%",
           marginHorizontal: "auto",
-        }}
-      >
+        }}>
         Login
       </Button>
       <View style={{ alignItems: "center", marginVertical: 10, height: "10%" }}>
         <Text>Don't have an account?</Text>
         <Text
           style={{ fontWeight: "bold", color: "#1e88e5" }}
-          onPress={showModal}
-        >
+          onPress={showModal}>
           Register here
         </Text>
       </View>
-      <Text style={{ fontWeight: "bold", color: "red", marginHorizontal: "auto" }}>{state.error && state.error.err}</Text>
+      <Text
+        style={{ fontWeight: "bold", color: "red", marginHorizontal: "auto" }}>
+        {state.error && state.error.err}
+      </Text>
       <Portal>
         <Modal
           style={{ width: "90%", marginHorizontal: "auto" }}
           visible={visible}
           onDismiss={hideModal}
-          contentContainerStyle={containerStyle}
-        >
+          contentContainerStyle={containerStyle}>
           <Text
             style={{
               marginHorizontal: "auto",
               fontSize: "20",
               fontWeight: "bold",
-            }}
-          >
+            }}>
             Sign Up
           </Text>
           <TextInput
-            placeholder="Username"
+            placeholder='Username'
             value={username}
             onChangeText={(text) => setUsername(text)}
             style={{
@@ -156,7 +153,7 @@ const Login = () => {
             }}
           />
           <TextInput
-            placeholder="Email"
+            placeholder='Email'
             value={email}
             onChangeText={(text) => setEmail(text)}
             style={{
@@ -168,7 +165,7 @@ const Login = () => {
           />
 
           <TextInput
-            placeholder="Password"
+            placeholder='Password'
             value={password}
             onChangeText={(text) => setPassword(text)}
             style={{
@@ -181,15 +178,14 @@ const Login = () => {
           />
 
           <Button
-            mode="contained"
-            color="#f44336"
+            mode='contained'
+            color='#f44336'
             onPress={handleRegister}
             style={{
               marginTop: 10,
               width: "50%",
               marginHorizontal: "auto",
-            }}
-          >
+            }}>
             Register
           </Button>
         </Modal>

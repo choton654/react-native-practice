@@ -19,7 +19,7 @@ export const config = {
         MyAccount: "account",
         Login: "login",
         Editprofile: "editprofile",
-        AddLocation: "addaddress"
+        AddLocation: "addaddress",
       },
     },
   },

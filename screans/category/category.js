@@ -1,17 +1,17 @@
 import React, { useEffect, useContext } from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { Menu, Divider, Button, Card, Title } from "react-native-paper";
+import { Card, Title } from "react-native-paper";
 import axios from "axios";
 import BASE_URL from "../../api";
 import { CategoryContext } from "./categorycontext";
 const Category = ({ route, navigation }) => {
   const { catId } = route.params;
   const { catstate, catdispatch } = useContext(CategoryContext);
-  const [visible, setVisible] = React.useState(false);
+  // const [visible, setVisible] = React.useState(false);
 
-  const openMenu = () => setVisible(true);
+  // const openMenu = () => setVisible(true);
 
-  const closeMenu = () => setVisible(false);
+  // const closeMenu = () => setVisible(false);
   useEffect(() => {
     getAllCategory();
   }, []);
@@ -39,15 +39,20 @@ const Category = ({ route, navigation }) => {
                     flexDirection: "column",
                     justifyContent: "space-evenly",
                     alignItems: "center",
-                  }}
-                >
-                  <Card style={{ marginVertical: 20, width: 300 }}
-                    onPress={() => navigation.navigate("AllProducts", { subCatid: cat._id })}
-                  >
+                  }}>
+                  <Card
+                    style={{ marginVertical: 20, width: 300 }}
+                    onPress={() =>
+                      navigation.navigate("AllProducts", { subCatid: cat._id })
+                    }>
                     <Card.Content>
                       <Title>{cat.name}</Title>
                     </Card.Content>
-                    <Card.Cover source={{ uri: 'https://images.pexels.com/photos/1682699/pexels-photo-1682699.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260' }}
+                    <Card.Cover
+                      source={{
+                        uri:
+                          "https://images.pexels.com/photos/1682699/pexels-photo-1682699.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+                      }}
                     />
                   </Card>
                 </View>
@@ -55,10 +60,10 @@ const Category = ({ route, navigation }) => {
           )}
         </View>
       ) : (
-          <View>
-            <Text>Loading</Text>
-          </View>
-        )}
+        <View>
+          <Text>Loading</Text>
+        </View>
+      )}
     </View>
   );
 };

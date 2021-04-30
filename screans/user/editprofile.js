@@ -1,24 +1,24 @@
-import { Typography, Paper, Divider, TextField } from "@material-ui/core";
+// import { Typography, Paper, Divider, TextField } from "@material-ui/core";
 import { TextInput, Button, Modal, Portal } from "react-native-paper";
-import React, { useEffect, useState, useContext } from "react";
-import {
-  NavigationContainer,
-  useNavigation,
-  Link,
-} from "@react-navigation/native";
+import React, { useState, useContext } from "react";
+// import {
+//   NavigationContainer,
+//   useNavigation,
+//   Link,
+// } from "@react-navigation/native";
 import axios from "axios";
 import { StyleSheet, Text, View, Image } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "./authcontext";
 import BASE_URL from "../../api";
 
 const Editprofile = () => {
   const { state, dispatch } = useContext(AuthContext);
-  const navigation = useNavigation();
-  const [username, setUsername] = useState(state.user.username);
-  const [email, setEmail] = useState(state.user.email);
+  // const navigation = useNavigation();
+  const [username, setUsername] = useState(state.user?.username);
+  const [email, setEmail] = useState(state.user?.email);
   const user = JSON.parse(localStorage.getItem("user"));
-  const userId = user._id;
+  const userId = user?._id;
   const token = localStorage.getItem("token");
   const [oldPass, setOldpass] = useState("");
   const [newPass, setNewpass] = useState("");
@@ -71,8 +71,7 @@ const Editprofile = () => {
         style={{
           height: "25%",
           backgroundColor: "#2874f0",
-        }}
-      >
+        }}>
         {state.user && (
           <View style={{ alignItems: "center" }}>
             <View style={{ alignItems: "center", flexDirection: "row" }}>
@@ -119,7 +118,7 @@ const Editprofile = () => {
           style={{ width: "95%", marginLeft: 10, marginTop: 20 }}
         /> */}
         <TextInput
-          placeholder="Username"
+          placeholder='Username'
           value={username}
           onChangeText={(text) => setUsername(text)}
           style={{
@@ -130,7 +129,7 @@ const Editprofile = () => {
           }}
         />
         <TextInput
-          placeholder="Email"
+          placeholder='Email'
           value={email}
           onChangeText={(text) => setEmail(text)}
           style={{
@@ -147,8 +146,7 @@ const Editprofile = () => {
             fontWeight: "bold",
             margin: "auto",
             color: "#2874f0",
-          }}
-        >
+          }}>
           SUBMIT
         </Text>
 
@@ -160,8 +158,7 @@ const Editprofile = () => {
             marginTop: "auto",
             marginLeft: 20,
             marginBottom: 20,
-          }}
-        >
+          }}>
           Change Password
         </Text>
         <Portal>
@@ -169,19 +166,17 @@ const Editprofile = () => {
             style={{ width: "90%", marginHorizontal: "auto" }}
             visible={visible}
             onDismiss={hideModal}
-            contentContainerStyle={containerStyle}
-          >
+            contentContainerStyle={containerStyle}>
             <Text
               style={{
                 marginHorizontal: "auto",
                 fontSize: "20",
                 fontWeight: "bold",
-              }}
-            >
+              }}>
               Change Password
             </Text>
             <TextInput
-              placeholder="Old password"
+              placeholder='Old password'
               value={oldPass}
               onChangeText={(text) => setOldpass(text)}
               style={{
@@ -192,7 +187,7 @@ const Editprofile = () => {
               }}
             />
             <TextInput
-              placeholder="New password"
+              placeholder='New password'
               value={newPass}
               onChangeText={(text) => setNewpass(text)}
               style={{
@@ -203,7 +198,7 @@ const Editprofile = () => {
               }}
             />
             <TextInput
-              placeholder="Confirm password"
+              placeholder='Confirm password'
               value={confirmPass}
               onChangeText={(text) => setConfirmpass(text)}
               style={{
@@ -214,15 +209,14 @@ const Editprofile = () => {
               }}
             />
             <Button
-              mode="contained"
-              color="#f44336"
+              mode='contained'
+              color='#f44336'
               onPress={handlePassword}
               style={{
                 marginTop: 10,
                 width: "50%",
                 marginHorizontal: "auto",
-              }}
-            >
+              }}>
               Done
             </Button>
           </Modal>

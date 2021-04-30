@@ -7,18 +7,16 @@ import { config } from "./config";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import * as React from "react";
-import { useEffect, useState, useContext } from "react";
-import { StyleSheet, Text, View, Image } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useContext } from "react";
+import { Text, View, Image } from "react-native";
 import * as Linking from "expo-linking";
-import { Button, IconButton, Typography } from "@material-ui/core";
+import { IconButton, Typography } from "@material-ui/core";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import ClearIcon from "@material-ui/icons/Clear";
 import PermIdentityIcon from "@material-ui/icons/PermIdentity";
 import Header from "../components/header";
 import Drawercontent from "../components/drawercontent";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Category from "../screans/category/category";
 import Account from "../screans/user/account";
 import Cart from "../screans/cart/cart";
@@ -44,7 +42,7 @@ function MyTabs() {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        name="Tab1"
+        name='Tab1'
         component={() => (
           <View>
             <Text>From tab1</Text>
@@ -52,7 +50,7 @@ function MyTabs() {
         )}
       />
       <Tab.Screen
-        name="Tab2"
+        name='Tab2'
         component={() => (
           <View>
             <Text>From tab2</Text>
@@ -80,9 +78,9 @@ const HomeNavigation = () => {
   let user;
   // const user = JSON.parse(localStorage.getItem("user")) || state.user
   if (state.user) {
-    user = state.user
+    user = state.user;
   } else {
-    user = JSON.parse(localStorage.getItem("user"))
+    user = JSON.parse(localStorage.getItem("user"));
   }
 
   return (
@@ -94,56 +92,59 @@ const HomeNavigation = () => {
           borderBottomColor: "#2874f0",
         },
         headerTintColor: "#eceff1",
-      }}
-    >
+      }}>
       <Stack.Screen
-        name="Home"
+        name='Home'
         component={HomeScreen}
         options={{
           headerLeft: () => <Header />,
           headerRight: () => (
             <View style={{ flexDirection: "row" }}>
               <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                onClick={() => navigation.navigate("Cart")}
-              >
+                edge='start'
+                color='inherit'
+                aria-label='menu'
+                onClick={() => navigation.navigate("Cart")}>
                 <ShoppingCartIcon style={{ color: "#fce4ec" }} />
               </IconButton>
               <View
-                style={{ color: "#fce4ec", marginHorizontal: 10, marginVertical: 8 }}
-              >
+                style={{
+                  color: "#fce4ec",
+                  marginHorizontal: 10,
+                  marginVertical: 8,
+                }}>
                 {user ? (
                   <IconButton
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    onClick={() => navigation.navigate("MyAccount")}
-                  >
-                    <PermIdentityIcon
-                      style={{ cursor: "pointer" }}
-                    />
+                    edge='start'
+                    color='inherit'
+                    aria-label='menu'
+                    onClick={() => navigation.navigate("MyAccount")}>
+                    <PermIdentityIcon style={{ cursor: "pointer" }} />
                   </IconButton>
-
                 ) : (
-                    <Text onPress={() => navigation.navigate("Login")} style={{ fontWeight: "bold", color: "white", marginVertical: 5, fontSize: 15 }}>
-                      Login
-                    </Text>
-                  )}
+                  <Text
+                    onPress={() => navigation.navigate("Login")}
+                    style={{
+                      fontWeight: "bold",
+                      color: "white",
+                      marginVertical: 5,
+                      fontSize: 15,
+                    }}>
+                    Login
+                  </Text>
+                )}
               </View>
             </View>
           ),
           headerTitle: () => (
             <View>
-              <Typography variant="h6" color="inherit">
+              <Typography variant='h6' color='inherit'>
                 <Link
-                  to="/home"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
+                  to='/home'
+                  style={{ textDecoration: "none", color: "white" }}>
                   <div style={{ display: "flex", flexDirection: "column" }}>
                     <img
-                      src="https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_4ee2f9.png"
+                      src='https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_4ee2f9.png'
                       style={{ width: 75 }}
                     />
                     <span
@@ -151,20 +152,18 @@ const HomeNavigation = () => {
                         fontSize: "11px",
                         fontStyle: "italic",
                         marginTop: "-1px",
-                      }}
-                    >
+                      }}>
                       Explore{" "}
                       <span
                         style={{
                           marginRight: "2px",
                           fontWeight: 500,
                           color: "#ffe500",
-                        }}
-                      >
+                        }}>
                         Plus{" "}
                       </span>
                       <img
-                        src="https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/plus_b13a8b.png"
+                        src='https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/plus_b13a8b.png'
                         style={{ width: 10 }}
                       />{" "}
                     </span>
@@ -175,15 +174,15 @@ const HomeNavigation = () => {
           ),
         }}
       />
-      <Stack.Screen name="Details" component={DetailsScreen} />
-      <Stack.Screen name="SubCategory" component={Category} />
-      <Stack.Screen name="AllProducts" component={Allproducts} />
-      <Stack.Screen name="Items" component={Items} />
-      <Stack.Screen name="SingleItem" component={Singleitem} />
-      <Stack.Screen name="Editprofile" component={Editprofile} />
-      <Stack.Screen name="AddLocation" component={Address} />
+      <Stack.Screen name='Details' component={DetailsScreen} />
+      <Stack.Screen name='SubCategory' component={Category} />
+      <Stack.Screen name='AllProducts' component={Allproducts} />
+      <Stack.Screen name='Items' component={Items} />
+      <Stack.Screen name='SingleItem' component={Singleitem} />
+      <Stack.Screen name='Editprofile' component={Editprofile} />
+      <Stack.Screen name='AddLocation' component={Address} />
       <Stack.Screen
-        name="MyAccount"
+        name='MyAccount'
         component={Account}
         options={{
           headerTitle: () => (
@@ -199,40 +198,37 @@ const HomeNavigation = () => {
                 }}
               />
               <Typography
-                variant="subtitle1"
-                style={{ marginLeft: 20, color: "white" }}
-              >
+                variant='subtitle1'
+                style={{ marginLeft: 20, color: "white" }}>
                 My Account
               </Typography>
             </View>
           ),
         }}
       />
-      <Stack.Screen name="Cart" component={Cart} />
-      <Stack.Screen name="Order" component={Order} />
+      <Stack.Screen name='Cart' component={Cart} />
+      <Stack.Screen name='Order' component={Order} />
       <Stack.Screen
-        name="Login"
+        name='Login'
         component={Login}
         options={{
           headerTitle: () => (
             <Link
-              to="/home"
-              style={{ textDecoration: "none", color: "white", marginTop: 5 }}
-            >
+              to='/home'
+              style={{ textDecoration: "none", color: "white", marginTop: 5 }}>
               <img
-                src="https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_4ee2f9.png"
+                src='https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/flipkart-plus_4ee2f9.png'
                 style={{ width: 60 }}
               />
             </Link>
           ),
           headerRight: () => (
             <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              onClick={() => navigation.navigate("Home")}
-            >
-              <ClearIcon style={{ color: "#fce4ec" }} fontSize="default" />
+              edge='start'
+              color='inherit'
+              aria-label='menu'
+              onClick={() => navigation.navigate("Home")}>
+              <ClearIcon style={{ color: "#fce4ec" }} fontSize='default' />
             </IconButton>
           ),
         }}
@@ -246,9 +242,8 @@ function RootNavigation() {
     <NavigationContainer linking={linking}>
       <Drawer.Navigator
         // initialRouteName="/"
-        drawerContent={(props) => <Drawercontent {...props} />}
-      >
-        <Drawer.Screen name="/" component={HomeNavigation} />
+        drawerContent={(props) => <Drawercontent {...props} />}>
+        <Drawer.Screen name='/' component={HomeNavigation} />
       </Drawer.Navigator>
     </NavigationContainer>
   );
