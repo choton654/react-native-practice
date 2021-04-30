@@ -7,6 +7,7 @@ import { config } from "./config";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import * as React from "react";
+import { useEffect } from "react";
 import { useContext } from "react";
 import { Text, View, Image } from "react-native";
 import * as Linking from "expo-linking";
@@ -29,6 +30,11 @@ import Allproducts from "../screans/product/allproducts";
 import Items from "../screans/product/items";
 import Singleitem from "../screans/product/singleitem";
 import Address from "../screans/user/address";
+import * as PusherPushNotifications from "@pusher/push-notifications-web";
+
+const beamsClient = new PusherPushNotifications.Client({
+  instanceId: "f3a8ef03-ae7a-427f-aa96-8521bd4c33dd",
+});
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -238,6 +244,16 @@ const HomeNavigation = () => {
 };
 
 function RootNavigation() {
+  useEffect(() => {
+    beamsClient
+      .start()
+      .then(() => beamsClient.getDeviceId())
+      .then((deviceId) => {
+        console.log(deviceId); // Will log something like web-1234-1234-1234-1234
+      })
+      .catch((e) => console.error("Could not get device id", e));
+  }, []);
+
   return (
     <NavigationContainer linking={linking}>
       <Drawer.Navigator
