@@ -47,13 +47,12 @@ const Drawercontent = ({ navigation }) => {
     <View>
       <View style={styles.heading}>
         <PersonIcon
-          fontSize="default"
+          fontSize='default'
           style={{ color: "white", marginTop: 20 }}
         />
         <Typography
           style={{ color: "white", marginTop: 20, marginRight: 40 }}
-          variant="subtitle1"
-        >
+          variant='subtitle1'>
           <strong>Welcome</strong>
         </Typography>
         <Image
@@ -68,15 +67,15 @@ const Drawercontent = ({ navigation }) => {
           }}
         />
       </View>
-      <List component="nav" aria-label="main mailbox folders">
+      <List component='nav' aria-label='main mailbox folders'>
         <ListItem button onClick={handleClick}>
           <ListItemIcon>
-            <CategoryIcon fontSize="small" style={{ marginLeft: 4 }} />
+            <CategoryIcon fontSize='small' style={{ marginLeft: 4 }} />
           </ListItemIcon>
-          <Typography variant="subtitle2">All Category</Typography>
+          <Typography variant='subtitle2'>All Category</Typography>
           {/* {open ? <ExpandLess /> : <ExpandMore />} */}
         </ListItem>
-        <Collapse in={open} timeout="auto" unmountOnExit>
+        <Collapse in={open} timeout='auto' unmountOnExit>
           {catstate.categories.length !== 0 ? (
             <View>
               {catstate.categories.map(
@@ -86,15 +85,16 @@ const Drawercontent = ({ navigation }) => {
                       key={cat._id}
                       button
                       style={{ backgroundColor: "#e0e0e0" }}
-                      onClick={() => navigation.navigate("SubCategory",{catId:cat._id})}
-                    >
+                      onClick={() =>
+                        navigation.navigate("SubCategory", { catId: cat._id })
+                      }>
                       <ListItemIcon>
                         <DoubleArrowIcon
-                          fontSize="small"
+                          fontSize='small'
                           style={{ marginLeft: 4 }}
                         />
                       </ListItemIcon>
-                      <Typography variant="subtitle2">{cat.name}</Typography>
+                      <Typography variant='subtitle2'>{cat.name}</Typography>
                     </ListItem>
                   )
               )}
@@ -108,16 +108,16 @@ const Drawercontent = ({ navigation }) => {
         <Divider />
         <ListItem button onClick={() => navigation.navigate("Order")}>
           <ListItemIcon>
-            <StoreIcon fontSize="small" style={{ marginLeft: 4 }} />
+            <StoreIcon fontSize='small' style={{ marginLeft: 4 }} />
           </ListItemIcon>
-          <Typography variant="subtitle2">My Order</Typography>
+          <Typography variant='subtitle2'>My Order</Typography>
         </ListItem>
         <Divider />
         <ListItem button onClick={() => navigation.navigate("Cart")}>
           <ListItemIcon>
-            <ShoppingCartIcon fontSize="small" style={{ marginLeft: 4 }} />
+            <ShoppingCartIcon fontSize='small' style={{ marginLeft: 4 }} />
           </ListItemIcon>
-          <Typography variant="subtitle2">My Cart</Typography>
+          <Typography variant='subtitle2'>My Cart</Typography>
         </ListItem>
         <Divider />
         <ListItem
@@ -126,19 +126,18 @@ const Drawercontent = ({ navigation }) => {
             state.user
               ? navigation.navigate("MyAccount")
               : navigation.navigate("Login");
-          }}
-        >
+          }}>
           <ListItemIcon>
-            <PersonIcon fontSize="small" style={{ marginLeft: 4 }} />
+            <PersonIcon fontSize='small' style={{ marginLeft: 4 }} />
           </ListItemIcon>
-          <Typography variant="subtitle2">My Account</Typography>
+          <Typography variant='subtitle2'>My Account</Typography>
         </ListItem>
         <Divider />
         <ListItem button onClick={handleLogout}>
           <ListItemIcon>
-            <ExitToAppIcon fontSize="small" style={{ marginLeft: 4 }} />
+            <ExitToAppIcon fontSize='small' style={{ marginLeft: 4 }} />
           </ListItemIcon>
-          <Typography variant="subtitle2">Log out</Typography>
+          <Typography variant='subtitle2'>Log out</Typography>
         </ListItem>
       </List>
     </View>

@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  NavigationContainer,
+  // NavigationContainer,
   useNavigation,
   DrawerActions,
 } from "@react-navigation/native";
@@ -12,11 +12,10 @@ const Header = () => {
   return (
     <div>
       <IconButton
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        onClick={() => navigation.dispatch(DrawerActions.toggleDrawer())}
-      >
+        edge='start'
+        color='inherit'
+        aria-label='menu'
+        onClick={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
         <MenuIcon style={{ color: "#fce4ec", marginLeft: "20px" }} />
       </IconButton>
     </div>
