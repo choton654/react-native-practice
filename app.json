@@ -5,10 +5,12 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/shopping1.png",
+    "primaryColor":"#bbdefb",
     "splash": {
       "image": "./assets/shopping2.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#ffffff",
+      "themeColor": "#bbdefb"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -29,8 +31,8 @@
     "display": "standalone",
     "lang": "en",
     "name": "E-commerce",
-    "short_name": "E-commerce",
-    "start_url": "/?utm_source=web_app_manifest",
+    "shortName": "E-commerce",
+    "startUrl": "/?utm_source=web_app_manifest",
     "icons": [
       {
         "src": "./assets/shopping1.png",
@@ -51,8 +53,8 @@
         "purpose": "any maskable"
       }
     ],
-      "background_color": "#e3f2fd",
-      "theme_color": "#bbdefb",
+      "backgroundColor": "#ffffff",
+      "themeColor": "#bbdefb",
       "favicon": "./assets/shopping.png"
 
     }
