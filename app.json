@@ -4,12 +4,7 @@
     "slug": "E-commerce",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": [
-      {
-        "src": "./assets/shopping1.png",
-        "purpose": "any maskable"
-      }
-    ],
+    "icon": "./assets/shopping1.png",
     "primaryColor":"#bbdefb",
     "splash": {
       "image": "./assets/shopping2.png",
@@ -38,29 +33,9 @@
     "name": "E-commerce",
     "shortName": "E-commerce",
     "startUrl": "/?utm_source=web_app_manifest",
-    "icons": [
-      {
-        "src": "./assets/shopping1.png",
-        "sizes": "128x128",
-        "type": "image/png",
-        "purpose": "any maskable"
-      },
-      {
-        "src": "./assets/shopping3.png",
-        "sizes": "256x256",
-        "type": "image/png",
-        "purpose": "any maskable"
-      },
-      {
-        "src": "./assets/shopping2.png",
-        "sizes": "512x512",
-        "type": "image/png",
-        "purpose": "any maskable"
-      }
-    ],
-      "backgroundColor": "#ffffff",
-      "themeColor": "#bbdefb",
-      "favicon": "./assets/shopping.png"
+    "backgroundColor": "#ffffff",
+    "themeColor": "#bbdefb",
+    "favicon": "./assets/shopping.png"
 
     }
   }
