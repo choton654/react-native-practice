@@ -4,7 +4,12 @@
     "slug": "E-commerce",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/shopping1.png",
+    "icon": [
+      {
+        "src": "./assets/shopping1.png",
+        "purpose": "any maskable"
+      }
+    ],
     "primaryColor":"#bbdefb",
     "splash": {
       "image": "./assets/shopping2.png",
